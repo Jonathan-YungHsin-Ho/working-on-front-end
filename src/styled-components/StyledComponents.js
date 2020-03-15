@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const StyledForm = styled.div`
 	width: 30rem;
 	height: 40rem;
-	margin: 0 auto;
+	margin: 2rem auto;
 	padding: 3rem;
 
 	display: flex;
@@ -12,7 +12,7 @@ export const StyledForm = styled.div`
 	text-align: center;
 
 	background-color: white;
-	border-radius: 0.5rem;
+	border-radius: 0.3rem;
 	border: 1px solid silver;
 
 	.logo {

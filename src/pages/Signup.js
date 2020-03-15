@@ -5,32 +5,33 @@ import { Link, useHistory } from 'react-router-dom';
 import { StyledForm } from '../styled-components/StyledComponents';
 import { Logo } from '../components/navbar';
 
-const LOGIN = gql`
-	mutation Login($email: String!, $password: String!) {
-		login(email: $email, password: $password) {
+const SIGNUP = gql`
+	mutation Signup($email: String!, $username: String!, $password: String!) {
+		signup(email: $email, username: $username, password: $password) {
 			token
 		}
 	}
 `;
 
-export default function Login() {
+export default function Signup() {
 	const history = useHistory();
 	const [user, setUser] = useState({
 		email: '',
+		username: '',
 		password: '',
 	});
 
-	const [login, { loading, error, data, client }] = useMutation(LOGIN);
+	const [signup, { loading, error, data, client }] = useMutation(SIGNUP);
 
 	useEffect(() => {
 		if (data) {
 			const {
-				login: { token },
+				signup: { token },
 			} = data;
 
 			localStorage.setItem('token', token);
 			client.writeData({ data: { isLoggedIn: true } });
-			history.push('/home');
+			history.push('/profile');
 		}
 	}, [data]);
 
@@ -39,14 +40,15 @@ export default function Login() {
 
 	const handleSubmit = e => {
 		e.preventDefault();
-		login({ variables: { ...user } });
-		setUser({ email: '', password: '' });
+		signup({ variables: { ...user } });
+		setUser({ email: '', username: '', password: '' });
 	};
 
 	return (
 		<StyledForm>
 			<div>
 				<Logo className='logo' />
+				<p>Sign up to see what projects your dev friends are working on.</p>
 				{loading && <p>Loading...</p>}
 				{!loading && (
 					<form onSubmit={handleSubmit}>
@@ -58,19 +60,26 @@ export default function Login() {
 							onChange={handleChange}
 						/>
 						<input
+							type='text'
+							name='username'
+							value={user.username}
+							placeholder='Username'
+							onChange={handleChange}
+						/>
+						<input
 							type='password'
 							name='password'
 							value={user.password}
 							placeholder='Password'
 							onChange={handleChange}
 						/>
-						<button type='submit'>Log In</button>
+						<button>Sign up</button>
 					</form>
 				)}
 				{error && <p>Error!</p>}
 			</div>
 			<div>
-				Don't have an account? <Link to='/signup'>Sign up</Link>
+				Have an account? <Link to='/login'>Log in</Link>
 			</div>
 		</StyledForm>
 	);
