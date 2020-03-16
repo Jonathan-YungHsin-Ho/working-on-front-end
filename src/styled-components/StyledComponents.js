@@ -28,26 +28,28 @@ export const StyledForm = styled.div`
 	form {
 		display: flex;
 		flex-direction: column;
+	}
+`;
 
-		input {
-			margin-bottom: 0.5rem;
-			padding: 0.75rem;
+export const StyledInput = styled.input`
+	width: 100%;
+	margin-bottom: 0.5rem;
+	padding: 0.75rem;
 
-			font-family: inherit;
-		}
+	font-family: inherit;
+`;
 
-		button {
-			margin: 1rem 0;
-			height: 3rem;
+export const StyledButton = styled.button`
+	width: 100%;
+	margin: 1rem 0;
+	height: 3rem;
 
-			font-family: inherit;
-			font-weight: bold;
-			cursor: pointer;
+	font-family: inherit;
+	font-weight: bold;
+	cursor: pointer;
 
-			/* background-color: #003366;
+	/* background-color: #003366;
 			color: white;
 			border-radius: 0.5rem;
 			border: none; */
-		}
-	}
 `;

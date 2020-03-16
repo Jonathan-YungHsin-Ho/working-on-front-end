@@ -8,6 +8,7 @@ const GET_ALL_USERS = gql`
 	query {
 		allUsers {
 			username
+			id
 			projects {
 				name
 				id
@@ -15,13 +16,9 @@ const GET_ALL_USERS = gql`
 				status
 				wantFeedback
 				wantAssistance
-				deploymentURL
-				frontEndRepoURL
-				backEndRepoURL
+				completed
 				# likes
 				# comments
-				createdAt
-				lastUpdated
 			}
 		}
 	}
@@ -42,8 +39,10 @@ export default function Explore() {
 }
 
 const CardWrapper = styled.div`
+	max-width: 98rem;
+	margin: 0 auto;
 	display: flex;
-	flex-direction: wrap;
+	flex-wrap: wrap;
 	justify-content: space-around;
 	align-items: flex-start;
 

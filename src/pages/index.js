@@ -4,7 +4,8 @@ import Login from './Login';
 import Explore from './Explore';
 import Profile from './Profile';
 import Project from './Project';
-import AddProject from './AddProject';
+import UpdateProfile from './UpdateProfile';
+import Projects from './Projects';
 import PrivateRoute from './PrivateRoute';
 
 export {
@@ -14,6 +15,7 @@ export {
 	Explore,
 	Profile,
 	Project,
-	AddProject,
+	UpdateProfile,
+	Projects,
 	PrivateRoute,
 };

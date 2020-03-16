@@ -16,19 +16,26 @@ export default function NavBar() {
 
 	return (
 		<StyledNav>
-			<Logo onClick={handleClick} style={logoStyle} />
-			{/* <Search /> */}
-			<NavRight />
+			<div className='nav-wrapper'>
+				<Logo onClick={handleClick} style={logoStyle} />
+				{/* <Search /> */}
+				<NavRight />
+			</div>
 		</StyledNav>
 	);
 }
 
 const StyledNav = styled.div`
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	padding: 1rem 2rem;
-
 	background-color: white;
 	border-bottom: 1px solid silver;
+
+	.nav-wrapper {
+		max-width: 98rem;
+		margin: 0 auto;
+
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 1rem 2rem;
+	}
 `;

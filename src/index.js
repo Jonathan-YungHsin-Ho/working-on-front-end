@@ -26,6 +26,7 @@ const client = new ApolloClient({
 
 const data = {
 	isLoggedIn: !!localStorage.getItem('token'),
+	userID: !!localStorage.getItem('userID'),
 };
 
 cache.writeData({ data });
