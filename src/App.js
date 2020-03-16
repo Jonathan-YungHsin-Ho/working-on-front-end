@@ -12,7 +12,8 @@ import {
 	PrivateRoute,
 	Profile,
 	Project,
-	AddProject,
+	UpdateProfile,
+	Projects,
 } from './pages';
 
 function App() {
@@ -26,10 +27,11 @@ function App() {
 			<Route path='/signup' component={Signup} />
 			<Route path='/login' component={Login} />
 			<Route path='/explore' component={Explore} />
+			<Route path='/profile' component={Profile} />
 			<PrivateRoute path='/home' component={Home} />
-			<PrivateRoute path='/profile' component={Profile} />
 			<PrivateRoute path='/project' component={Project} />
-			<PrivateRoute path='/addproject' component={AddProject} />
+			<PrivateRoute path='/updateprofile' component={UpdateProfile} />
+			<PrivateRoute path='/projects' component={Projects} />
 		</div>
 	);
 }

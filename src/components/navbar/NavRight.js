@@ -2,15 +2,16 @@ import React from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import { useIsLoggedIn } from '../../hooks';
-import { Avatar } from '../user';
+import { Avatar } from '../home';
 
 export default function NavRight() {
 	const history = useHistory();
+
 	const { isLoggedIn, client } = useIsLoggedIn();
 
 	const handleLogout = () => {
 		localStorage.clear();
-		client.writeData({ data: { isLoggedIn: false } });
+		client.writeData({ data: { isLoggedIn: false, userID: null } });
 		history.push('/');
 	};
 
@@ -24,13 +25,14 @@ export default function NavRight() {
 			)}
 			{isLoggedIn && (
 				<>
-					<NavLink to='/home'>Home</NavLink>
+					{/* <NavLink to='/home'>Home</NavLink> */}
 					<NavLink to='/explore'>Explore</NavLink>
 					<div className='logout' onClick={handleLogout}>
 						Logout
 					</div>
-					<NavLink to='/profile'>
-						<Avatar className='avatar' />
+					{/* <NavLink to='/profile'> */}
+					<NavLink to='/home'>
+						<Avatar className='avatar' width='3' height='3' />
 					</NavLink>
 				</>
 			)}

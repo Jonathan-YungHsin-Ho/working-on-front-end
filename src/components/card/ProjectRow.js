@@ -1,17 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useIsLoggedIn } from '../../hooks';
+// import { useIsLoggedIn } from '../../hooks';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default function ProjectRow({ project }) {
-	const { isLoggedIn } = useIsLoggedIn();
+	// const { isLoggedIn } = useIsLoggedIn();
 
 	return (
 		!project.private && (
 			<StyledProjectRow>
 				<div className='project-row-top'>
 					<div>
-						{isLoggedIn && (
+						{/* {isLoggedIn && (
 							<>
 								<FontAwesomeIcon
 									icon={['far', 'star']}
@@ -26,7 +26,7 @@ export default function ProjectRow({ project }) {
 									className='icon-heart'
 								/>
 							</>
-						)}
+						)} */}
 						{project.name}
 					</div>
 					<div>
@@ -42,7 +42,15 @@ export default function ProjectRow({ project }) {
 							<FontAwesomeIcon
 								icon={['fas', 'comment-dots']}
 								size='lg'
-								color='gray'
+								color='cornflowerblue'
+								className='icon-feedback'
+							/>
+						)}
+						{project.completed && (
+							<FontAwesomeIcon
+								icon={['fas', 'check']}
+								size='lg'
+								color='green'
 								className='icon-feedback'
 							/>
 						)}

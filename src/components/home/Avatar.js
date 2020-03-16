@@ -8,8 +8,10 @@ export default function Avatar({ ...props }) {
 const StyledAvatar = styled.div`
 	flex-shrink: 0;
 
-	width: 3rem;
-	height: 3rem;
+	width: ${props => props.width + 'rem'};
+	height: ${props => props.height + 'rem'};
+	margin-right: ${props => props.marginRight + 'rem'};
+
 	border-radius: 50%;
 
 	background-color: rebeccapurple;

@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Avatar } from '../home';
 import { ProjectRow } from './';
 
 export default function Card({ user }) {
@@ -9,10 +10,10 @@ export default function Card({ user }) {
 		<StyledCard>
 			<div className='card-user'>
 				<div className='card-user-left'>
-					<StyledUserPic></StyledUserPic>
+					<Avatar width='3' height='3' marginRight='1' />
 					{username}
 				</div>
-				<button>Follow</button>
+				{/* <button>Follow</button> */}
 			</div>
 			{projects[0] && (
 				<div className='card-projects'>
@@ -28,6 +29,7 @@ export default function Card({ user }) {
 const StyledCard = styled.div`
 	width: 30rem;
 	padding-bottom: 0.5rem;
+	margin-bottom: 2rem;
 
 	display: flex;
 	flex-direction: column;
@@ -49,15 +51,4 @@ const StyledCard = styled.div`
 			align-items: center;
 		}
 	}
-`;
-
-const StyledUserPic = styled.div`
-	margin-right: 1rem;
-	flex-shrink: 0;
-
-	width: 4rem;
-	height: 4rem;
-	border-radius: 50%;
-
-	background-color: rebeccapurple;
 `;
