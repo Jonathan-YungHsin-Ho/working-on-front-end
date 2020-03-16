@@ -1,24 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useMutation } from '@apollo/react-hooks';
-import { gql } from 'apollo-boost';
 import { Link, useHistory } from 'react-router-dom';
-import {
-	StyledForm,
-	StyledInput,
-	StyledButton,
-} from '../styled-components/StyledComponents';
+import { StyledForm, StyledInput, StyledButton } from '../styled-components';
 import { Logo } from '../components/navbar';
-
-const SIGNUP = gql`
-	mutation Signup($email: String!, $username: String!, $password: String!) {
-		signup(email: $email, username: $username, password: $password) {
-			token
-			user {
-				id
-			}
-		}
-	}
-`;
+import { SIGNUP } from '../mutations';
 
 export default function Signup() {
 	const history = useHistory();

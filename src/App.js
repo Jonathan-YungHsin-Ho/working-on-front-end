@@ -2,7 +2,7 @@ import React from 'react';
 import { Route } from 'react-router-dom';
 import { useIsLoggedIn } from './hooks';
 import './App.css';
-import GlobalStyle from './styled-components/GlobalStyle';
+import { GlobalStyle } from './styled-components';
 import { NavBar } from './components/navbar';
 import {
 	Home,

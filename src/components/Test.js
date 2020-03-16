@@ -1,12 +1,6 @@
 import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
-import { gql } from 'apollo-boost';
-
-const GET_INFO = gql`
-	query {
-		info
-	}
-`;
+import { GET_INFO } from '../queries';
 
 export default function Test() {
 	const { loading, error, data } = useQuery(GET_INFO);

@@ -1,28 +1,9 @@
 import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
-import { gql } from 'apollo-boost';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import { Avatar } from '.';
-
-const GET_USER = gql`
-	query {
-		me {
-			username
-			avatarURL
-			bio
-			projects {
-				id
-			}
-			followers {
-				id
-			}
-			following {
-				id
-			}
-		}
-	}
-`;
+import { GET_USER } from '../../queries';
 
 export default function HomeHeader() {
 	const history = useHistory();
