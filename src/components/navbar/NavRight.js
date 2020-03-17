@@ -1,19 +1,13 @@
 import React from 'react';
-import { NavLink, useHistory } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
-import { useIsLoggedIn } from '../../hooks';
 import { Avatar } from '../home';
+import { ModalLogout } from '../modals';
+import { useModal, useIsLoggedIn } from '../../hooks';
 
 export default function NavRight() {
-	const history = useHistory();
-
-	const { isLoggedIn, client } = useIsLoggedIn();
-
-	const handleLogout = () => {
-		localStorage.clear();
-		client.writeData({ data: { isLoggedIn: false, userID: null } });
-		history.push('/');
-	};
+	const { isLoggedIn } = useIsLoggedIn();
+	const { showModal, handleOpenModal, handleCloseModal } = useModal();
 
 	return (
 		<StyledNavRight>
@@ -27,7 +21,7 @@ export default function NavRight() {
 				<>
 					{/* <NavLink to='/home'>Home</NavLink> */}
 					<NavLink to='/explore'>Explore</NavLink>
-					<div className='logout' onClick={handleLogout}>
+					<div className='logout' onClick={handleOpenModal}>
 						Logout
 					</div>
 					{/* <NavLink to='/profile'> */}
@@ -36,6 +30,7 @@ export default function NavRight() {
 					</NavLink>
 				</>
 			)}
+			{showModal && <ModalLogout handleCloseModal={handleCloseModal} />}
 		</StyledNavRight>
 	);
 }

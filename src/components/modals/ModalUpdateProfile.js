@@ -2,7 +2,7 @@ import React from 'react';
 // import { useQuery, useMutation } from '@apollo/react-hooks';
 // import { gql } from 'apollo-boost';
 import styled from 'styled-components';
-import { StyledForm } from '../styled-components/StyledComponents';
+import { StyledForm } from '../../styled-components/StyledComponents';
 
 // const GET_USER = gql`
 // 	query {
@@ -20,7 +20,7 @@ import { StyledForm } from '../styled-components/StyledComponents';
 // 	}
 // `;
 
-export default function UpdateProfile() {
+export default function ModalUpdateProfile() {
 	return <StyledUpdateForm>UPDATE PROFILE</StyledUpdateForm>;
 }
 

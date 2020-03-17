@@ -6,6 +6,7 @@ import { ApolloProvider } from '@apollo/react-hooks';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import { far } from '@fortawesome/free-regular-svg-icons';
+import { fab } from '@fortawesome/free-brands-svg-icons';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
@@ -22,18 +23,18 @@ const client = new ApolloClient({
 	request: operation =>
 		operation.setContext({ headers: { Authorization: getToken() } }),
 	cache,
+	resolvers: {},
 });
 
 const data = {
 	isLoggedIn: !!localStorage.getItem('token'),
-	userID: !!localStorage.getItem('userID'),
 };
 
 cache.writeData({ data });
 
 client.onResetStore(() => cache.writeData({ data }));
 
-library.add(fas, far);
+library.add(fas, far, fab);
 
 ReactDOM.render(
 	<ApolloProvider client={client}>

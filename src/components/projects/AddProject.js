@@ -13,6 +13,7 @@ export default function AddProject() {
 		name: '',
 		description: '',
 		status: '',
+		techStack: '',
 		designURL: '',
 		deploymentURL: '',
 		frontEndRepoURL: '',
@@ -98,6 +99,13 @@ export default function AddProject() {
 							type='text'
 							value={project.status}
 							placeholder='Current status'
+							onChange={handleChange}
+						/>
+						<StyledInput
+							name='techStack'
+							type='text'
+							value={project.techStack}
+							placeholder='Tech stack'
 							onChange={handleChange}
 						/>
 						<StyledInput

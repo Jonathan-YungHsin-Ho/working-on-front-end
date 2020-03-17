@@ -9,6 +9,7 @@ const GET_INFO = gql`
 const GET_USER = gql`
 	query {
 		me {
+			id
 			username
 			avatarURL
 			bio
@@ -45,4 +46,30 @@ const GET_ALL_USERS = gql`
 	}
 `;
 
-export { GET_INFO, GET_USER, GET_ALL_USERS };
+const GET_PROJ_BY_ID = gql`
+	query ProjectByID($id: String!) {
+		projectByID(id: $id) {
+			id
+			postedBy {
+				id
+				name
+				avatarURL
+			}
+			name
+			private
+			description
+			techStack
+			status
+			designURL
+			frontEndRepoURL
+			backEndRepoURL
+			deploymentURL
+			wantFeedback
+			wantAssistance
+			completed
+			archived
+		}
+	}
+`;
+
+export { GET_INFO, GET_USER, GET_ALL_USERS, GET_PROJ_BY_ID };

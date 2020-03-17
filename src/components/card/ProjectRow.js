@@ -1,14 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
-// import { useIsLoggedIn } from '../../hooks';
+import { useIsLoggedIn } from '../../hooks';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { ModalProject } from '../modals';
+import { useModal } from '../../hooks';
 
 export default function ProjectRow({ project }) {
-	// const { isLoggedIn } = useIsLoggedIn();
+	const { isLoggedIn } = useIsLoggedIn();
+
+	const { showModal, handleOpenModal, handleCloseModal } = useModal();
 
 	return (
 		!project.private && (
-			<StyledProjectRow>
+			<StyledProjectRow isLoggedIn={isLoggedIn}>
 				<div className='project-row-top'>
 					<div>
 						{/* {isLoggedIn && (
@@ -27,7 +31,9 @@ export default function ProjectRow({ project }) {
 								/>
 							</>
 						)} */}
-						{project.name}
+						<div className='project-name' onClick={handleOpenModal}>
+							{project.name}
+						</div>
 					</div>
 					<div>
 						{project.wantAssistance && (
@@ -57,6 +63,9 @@ export default function ProjectRow({ project }) {
 					</div>
 				</div>
 				<div className='project-status'>{project.status}</div>
+				{isLoggedIn && showModal && (
+					<ModalProject handleCloseModal={handleCloseModal} id={project?.id} />
+				)}
 			</StyledProjectRow>
 		)
 	);
@@ -71,6 +80,10 @@ const StyledProjectRow = styled.div`
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
+
+		.project-name {
+			cursor: ${props => props.isLoggedIn && 'pointer'};
+		}
 
 		.icon-star,
 		.icon-heart {
