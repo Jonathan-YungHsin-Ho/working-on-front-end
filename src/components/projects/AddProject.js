@@ -1,89 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useMutation } from '@apollo/react-hooks';
-import { gql } from 'apollo-boost';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
-import {
-	StyledInput,
-	StyledButton,
-} from '../../styled-components/StyledComponents';
-
-const CREATE_PROJECT = gql`
-	mutation CreateProject(
-		$name: String!
-		$description: String
-		$status: String
-		$designURL: String
-		$frontEndRepoURL: String
-		$backEndRepoURL: String
-		$deploymentURL: String
-		$private: Boolean!
-		$wantFeedback: Boolean
-		$wantAssistance: Boolean
-		$completed: Boolean
-	) {
-		createProject(
-			name: $name
-			description: $description
-			status: $status
-			designURL: $designURL
-			frontEndRepoURL: $frontEndRepoURL
-			backEndRepoURL: $backEndRepoURL
-			deploymentURL: $deploymentURL
-			private: $private
-			wantFeedback: $wantFeedback
-			wantAssistance: $wantAssistance
-			completed: $completed
-		) {
-			name
-			id
-			postedBy {
-				id
-			}
-			private
-			status
-			wantFeedback
-			wantAssistance
-			completed
-		}
-	}
-`;
-
-const GET_USER = gql`
-	query {
-		me {
-			username
-			avatarURL
-			bio
-			projects {
-				id
-			}
-			followers {
-				id
-			}
-			following {
-				id
-			}
-		}
-	}
-`;
-
-const GET_PROJECTS = gql`
-	query {
-		allUsers {
-			id
-			projects {
-				name
-				id
-				private
-				status
-				wantFeedback
-				wantAssistance
-				completed
-			}
-		}
-	}
-`;
+import { StyledInput, StyledButton } from '../../styled-components';
+import { CREATE_PROJECT } from '../../mutations';
+import { GET_USER, GET_ALL_USERS } from '../../queries';
 
 export default function AddProject() {
 	const history = useHistory();
@@ -92,6 +13,7 @@ export default function AddProject() {
 		name: '',
 		description: '',
 		status: '',
+		techStack: '',
 		designURL: '',
 		deploymentURL: '',
 		frontEndRepoURL: '',
@@ -109,18 +31,19 @@ export default function AddProject() {
 		{
 			update(cache, { data: { createProject } }) {
 				const { me } = cache.readQuery({ query: GET_USER });
+
 				cache.writeQuery({
 					query: GET_USER,
 					data: { me: { ...me, projects: { ...me.projects, createProject } } },
 				});
 
-				const { allUsers } = cache.readQuery({ query: GET_PROJECTS });
+				const { allUsers } = cache.readQuery({ query: GET_ALL_USERS });
 				const {
 					postedBy: { id },
 				} = createProject;
 
 				cache.writeQuery({
-					query: GET_PROJECTS,
+					query: GET_ALL_USERS,
 					data: {
 						allUsers: allUsers.map(user => {
 							if (user.id === id) {
@@ -176,6 +99,13 @@ export default function AddProject() {
 							type='text'
 							value={project.status}
 							placeholder='Current status'
+							onChange={handleChange}
+						/>
+						<StyledInput
+							name='techStack'
+							type='text'
+							value={project.techStack}
+							placeholder='Tech stack'
 							onChange={handleChange}
 						/>
 						<StyledInput

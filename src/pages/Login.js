@@ -1,24 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useMutation } from '@apollo/react-hooks';
-import { gql } from 'apollo-boost';
 import { Link, useHistory } from 'react-router-dom';
-import {
-	StyledForm,
-	StyledInput,
-	StyledButton,
-} from '../styled-components/StyledComponents';
+import { StyledForm, StyledInput, StyledButton } from '../styled-components';
 import { Logo } from '../components/navbar';
-
-const LOGIN = gql`
-	mutation Login($email: String!, $password: String!) {
-		login(email: $email, password: $password) {
-			token
-			user {
-				id
-			}
-		}
-	}
-`;
+import { LOGIN } from '../mutations';
 
 export default function Login() {
 	const history = useHistory();
@@ -28,32 +13,31 @@ export default function Login() {
 		password: '',
 	});
 
-	const [login, { loading, error, data, client }] = useMutation(LOGIN);
-
-	useEffect(() => {
-		if (data) {
-			const {
-				login: {
-					token,
-					user: { id },
-				},
-			} = data;
-
-			console.log('ID', id);
-
-			localStorage.setItem('token', token);
-			localStorage.setItem('userID', id);
-			client.writeData({ data: { isLoggedIn: true, userID: id } });
-			history.push('/home');
-		}
-	}, [data]);
+	const [login, { loading, error, client }] = useMutation(LOGIN);
 
 	const handleChange = e =>
 		setUser({ ...user, [e.target.name]: e.target.value });
 
 	const handleSubmit = e => {
 		e.preventDefault();
-		login({ variables: { ...user } });
+		login({ variables: { ...user } })
+			.then(res => {
+				// console.log(res);
+				const {
+					login: {
+						token,
+						user: { id },
+					},
+				} = res.data;
+
+				localStorage.setItem('token', token);
+				localStorage.setItem('userID', id);
+				client.writeData({ data: { isLoggedIn: true, userID: id } });
+				history.push('/home');
+			})
+			.catch(err => {
+				// console.log(err);
+			});
 		setUser({ email: '', password: '' });
 	};
 
@@ -81,7 +65,7 @@ export default function Login() {
 						<StyledButton type='submit'>Log In</StyledButton>
 					</form>
 				)}
-				{error && <p>Error!</p>}
+				{error && <p>Error: Invalid credentials!</p>}
 			</div>
 			<div>
 				Don't have an account? <Link to='/signup'>Sign up</Link>
