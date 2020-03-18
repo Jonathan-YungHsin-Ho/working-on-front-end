@@ -11,11 +11,11 @@ export default function ModalLogout({ handleCloseModal }) {
 	const client = useApolloClient();
 
 	const handleLogout = () => {
-		localStorage.clear();
 		handleCloseModal();
+		localStorage.clear();
 		client.writeData({ data: { isLoggedIn: false } });
 		history.push('/');
-		client.resetStore();
+		client.clearStore().then(() => client.resetStore());
 	};
 
 	return (

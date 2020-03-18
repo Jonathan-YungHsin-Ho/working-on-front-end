@@ -8,37 +8,38 @@ import { LOGIN } from '../mutations';
 export default function Login() {
 	const history = useHistory();
 
-	const [user, setUser] = useState({
-		email: '',
-		password: '',
-	});
+	const initialLogin = { email: '', password: '' };
+
+	const [user, setUser] = useState(initialLogin);
 
 	const [login, { loading, error, client }] = useMutation(LOGIN);
 
 	const handleChange = e =>
 		setUser({ ...user, [e.target.name]: e.target.value });
 
-	const handleSubmit = e => {
+	const handleSubmit = async e => {
 		e.preventDefault();
-		login({ variables: { ...user } })
-			.then(res => {
-				// console.log(res);
-				const {
+
+		try {
+			const res = await login({ variables: { ...user } });
+
+			const {
+				data: {
 					login: {
 						token,
 						user: { id },
 					},
-				} = res.data;
+				},
+			} = res;
 
-				localStorage.setItem('token', token);
-				localStorage.setItem('userID', id);
-				client.writeData({ data: { isLoggedIn: true, userID: id } });
-				history.push('/home');
-			})
-			.catch(err => {
-				// console.log(err);
-			});
-		setUser({ email: '', password: '' });
+			localStorage.setItem('token', token);
+			// localStorage.setItem('userID', id);
+			client.writeData({ data: { isLoggedIn: true, userID: id } });
+			history.push('/home');
+		} catch (err) {
+			// console.log(err.graphQLErrors.map(err => err.message));
+			setUser(initialLogin);
+		}
 	};
 
 	return (
@@ -65,7 +66,15 @@ export default function Login() {
 						<StyledButton type='submit'>Log In</StyledButton>
 					</form>
 				)}
-				{error && <p>Error: Invalid credentials!</p>}
+				{error && (
+					<div>
+						{error.graphQLErrors.map((err, index) => (
+							<p className='error' key={index}>
+								{err.message}
+							</p>
+						))}
+					</div>
+				)}
 			</div>
 			<div>
 				Don't have an account? <Link to='/signup'>Sign up</Link>

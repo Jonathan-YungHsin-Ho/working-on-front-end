@@ -38,6 +38,7 @@ export default function AddProject() {
 				});
 
 				const { allUsers } = cache.readQuery({ query: GET_ALL_USERS });
+
 				const {
 					postedBy: { id },
 				} = createProject;

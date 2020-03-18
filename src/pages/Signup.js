@@ -1,44 +1,58 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useMutation } from '@apollo/react-hooks';
 import { Link, useHistory } from 'react-router-dom';
 import { StyledForm, StyledInput, StyledButton } from '../styled-components';
 import { Logo } from '../components/navbar';
 import { SIGNUP } from '../mutations';
+import { GET_ALL_USERS } from '../queries';
 
 export default function Signup() {
 	const history = useHistory();
 
-	const [user, setUser] = useState({
-		email: '',
-		username: '',
-		password: '',
-	});
+	const initialSignup = { email: '', username: '', password: '' };
 
-	const [signup, { loading, error, data, client }] = useMutation(SIGNUP);
+	const [user, setUser] = useState(initialSignup);
 
-	useEffect(() => {
-		if (data) {
-			const {
-				signup: {
-					token,
-					user: { id },
+	const [signup, { loading, error, client }] = useMutation(SIGNUP, {
+		update(cache, { data: { signup } }) {
+			const { allUsers } = cache.readQuery({ query: GET_ALL_USERS });
+
+			const { user } = signup;
+
+			cache.writeQuery({
+				query: GET_ALL_USERS,
+				data: {
+					allUsers: [...allUsers, user],
 				},
-			} = data;
-
-			localStorage.setItem('token', token);
-			localStorage.setItem('userID', id);
-			client.writeData({ data: { isLoggedIn: true, userID: id } });
-			history.push('/profile');
-		}
-	}, [data]);
+			});
+		},
+	});
 
 	const handleChange = e =>
 		setUser({ ...user, [e.target.name]: e.target.value });
 
-	const handleSubmit = e => {
+	const handleSubmit = async e => {
 		e.preventDefault();
-		signup({ variables: { ...user } });
-		setUser({ email: '', username: '', password: '' });
+
+		try {
+			const res = await signup({ variables: { ...user } });
+
+			const {
+				data: {
+					signup: {
+						token,
+						user: { id },
+					},
+				},
+			} = res;
+
+			localStorage.setItem('token', token);
+			// localStorage.setItem('userID', id);
+			client.writeData({ data: { isLoggedIn: true, userID: id } });
+			history.push('/home');
+		} catch (err) {
+			// console.log(err.graphQLErrors.map(err => err.message));
+		}
 	};
 
 	return (
@@ -73,7 +87,15 @@ export default function Signup() {
 						<StyledButton>Sign up</StyledButton>
 					</form>
 				)}
-				{error && <p>Error!</p>}
+				{error?.graphQLErrors && (
+					<div>
+						{error.graphQLErrors.map((err, index) => (
+							<p className='error' key={index}>
+								{`Sorry, ${err.message.split('= ')[1]} unavailable`}
+							</p>
+						))}
+					</div>
+				)}
 			</div>
 			<div>
 				Have an account? <Link to='/login'>Log in</Link>

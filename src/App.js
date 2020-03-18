@@ -22,6 +22,7 @@ function App() {
 			<GlobalStyle />
 			<NavBar />
 			<Route exact path='/' component={isLoggedIn ? Home : Explore} />
+			{/* <Route exact path='/' component={Explore} /> */}
 			<Route path='/signup' component={Signup} />
 			<Route path='/login' component={Login} />
 			<Route path='/profile/:username' component={Profile} />
