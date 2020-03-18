@@ -29,6 +29,10 @@ export const StyledForm = styled.div`
 		display: flex;
 		flex-direction: column;
 	}
+
+	.error {
+		color: #cc0605;
+	}
 `;
 
 export const StyledInput = styled.input`

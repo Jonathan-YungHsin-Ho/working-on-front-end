@@ -6,6 +6,10 @@ const SIGNUP = gql`
 			token
 			user {
 				id
+				username
+				projects {
+					id
+				}
 			}
 		}
 	}

@@ -7,6 +7,7 @@ import { useModal, useIsLoggedIn } from '../../hooks';
 
 export default function NavRight() {
 	const { isLoggedIn } = useIsLoggedIn();
+
 	const { showModal, handleOpenModal, handleCloseModal } = useModal();
 
 	return (
