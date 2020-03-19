@@ -1,18 +1,21 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { Avatar } from '../home';
 import { ProjectRow } from './';
 
 export default function Card({ user }) {
-	const { username, projects } = user;
+	const { username, id, projects } = user;
+
+	console.log(id);
 
 	return (
 		<StyledCard>
 			<div className='card-user'>
-				<div className='card-user-left'>
+				<Link to={`/profile/${id}`} className='card-user-left'>
 					<Avatar width='3' height='3' marginRight='1' />
 					{username}
-				</div>
+				</Link>
 				{/* <button>Follow</button> */}
 			</div>
 			{projects[0] && (
@@ -49,6 +52,9 @@ const StyledCard = styled.div`
 		.card-user-left {
 			display: flex;
 			align-items: center;
+
+			color: inherit;
+			text-decoration: none;
 		}
 	}
 `;

@@ -1,3 +1,3 @@
-import ProfileHeader from './ProfileHeader';
+import ProfileContent from './ProfileContent';
 
-export { ProfileHeader };
+export { ProfileContent };

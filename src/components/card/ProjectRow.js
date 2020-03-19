@@ -8,7 +8,7 @@ import { useModal } from '../../hooks';
 export default function ProjectRow({ project }) {
 	const { isLoggedIn } = useIsLoggedIn();
 
-	const { showModal, handleOpenModal, handleCloseModal } = useModal();
+	const { showModal, handleModal } = useModal();
 
 	return (
 		!project.private && (
@@ -31,7 +31,9 @@ export default function ProjectRow({ project }) {
 								/>
 							</>
 						)} */}
-						<div className='project-name' onClick={handleOpenModal}>
+						<div
+							className='project-name'
+							onClick={() => handleModal({ type: 'open' })}>
 							{project.name}
 						</div>
 					</div>
@@ -63,8 +65,11 @@ export default function ProjectRow({ project }) {
 					</div>
 				</div>
 				<div className='project-status'>{project.status}</div>
-				{isLoggedIn && showModal && (
-					<ModalProject handleCloseModal={handleCloseModal} id={project?.id} />
+				{showModal && (
+					<ModalProject
+						handleCloseModal={() => handleModal({ type: 'close' })}
+						id={project?.id}
+					/>
 				)}
 			</StyledProjectRow>
 		)
@@ -82,7 +87,7 @@ const StyledProjectRow = styled.div`
 		align-items: center;
 
 		.project-name {
-			cursor: ${props => props.isLoggedIn && 'pointer'};
+			cursor: pointer;
 		}
 
 		.icon-star,

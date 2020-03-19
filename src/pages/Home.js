@@ -3,13 +3,13 @@ import {
 	HomeHeader,
 	// Following
 } from '../components/home';
-import { Explore } from './';
+import { AllUsers } from '../components/explore';
 
 export default function Home() {
 	return (
 		<div>
 			<HomeHeader />
-			<Explore />
+			<AllUsers />
 			{/* <Following /> */}
 		</div>
 	);
