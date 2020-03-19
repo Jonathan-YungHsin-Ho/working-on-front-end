@@ -8,7 +8,11 @@ export default function LandingHeader() {
 			<div className='header-wrapper'>
 				<p>
 					<span className='icon'>
-						<FontAwesomeIcon icon={['fas', 'laptop']} size='lg' color='black' />
+						<FontAwesomeIcon
+							icon={['fas', 'laptop-code']}
+							size='lg'
+							color='black'
+						/>
 					</span>
 					Share your projects.
 				</p>
