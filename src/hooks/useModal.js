@@ -1,11 +1,20 @@
-import { useState } from 'react';
+import { useReducer } from 'react';
 
 export const useModal = () => {
-	const [showModal, setShowModal] = useState(false);
+	const initialState = false;
 
-	const handleOpenModal = () => setShowModal(true);
+	const reducer = (_, action) => {
+		switch (action.type) {
+			case 'open':
+				return true;
+			case 'close':
+				return false;
+			default:
+				throw new Error();
+		}
+	};
 
-	const handleCloseModal = () => setShowModal(false);
+	const [showModal, handleModal] = useReducer(reducer, initialState);
 
-	return { showModal, handleOpenModal, handleCloseModal };
+	return { showModal, handleModal };
 };

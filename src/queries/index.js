@@ -72,4 +72,31 @@ const GET_PROJ_BY_ID = gql`
 	}
 `;
 
-export { GET_INFO, GET_USER, GET_ALL_USERS, GET_PROJ_BY_ID };
+const GET_USER_BY_ID = gql`
+	query UserByID($id: String!) {
+		userByID(id: $id) {
+			id
+			username
+			name
+			email
+			bio
+			techStack
+			avatarURL
+			githubURL
+			linkedinURL
+			portfolioURL
+			twitterURL
+			projects {
+				name
+				id
+				private
+				status
+				wantFeedback
+				wantAssistance
+				completed
+			}
+		}
+	}
+`;
+
+export { GET_INFO, GET_USER, GET_ALL_USERS, GET_PROJ_BY_ID, GET_USER_BY_ID };

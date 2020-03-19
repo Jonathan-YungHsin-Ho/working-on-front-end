@@ -8,7 +8,7 @@ import { useModal, useIsLoggedIn } from '../../hooks';
 export default function NavRight() {
 	const { isLoggedIn } = useIsLoggedIn();
 
-	const { showModal, handleOpenModal, handleCloseModal } = useModal();
+	const { showModal, handleModal } = useModal();
 
 	return (
 		<StyledNavRight>
@@ -22,7 +22,7 @@ export default function NavRight() {
 				<>
 					{/* <NavLink to='/home'>Home</NavLink> */}
 					<NavLink to='/explore'>Explore</NavLink>
-					<div className='logout' onClick={handleOpenModal}>
+					<div className='logout' onClick={() => handleModal({ type: 'open' })}>
 						Logout
 					</div>
 					{/* <NavLink to='/profile'> */}
@@ -31,7 +31,9 @@ export default function NavRight() {
 					</NavLink>
 				</>
 			)}
-			{showModal && <ModalLogout handleCloseModal={handleCloseModal} />}
+			{showModal && (
+				<ModalLogout handleCloseModal={() => handleModal({ type: 'close' })} />
+			)}
 		</StyledNavRight>
 	);
 }
