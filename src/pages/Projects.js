@@ -1,10 +1,10 @@
 import React from 'react';
-import { AddProject } from '../components/projects';
+import { ProjectsViewer } from '../components/projects';
 
 export default function Projects() {
 	return (
 		<div>
-			<AddProject />
+			<ProjectsViewer />
 		</div>
 	);
 }

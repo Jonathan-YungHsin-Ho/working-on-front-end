@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { useMutation } from '@apollo/react-hooks';
+import { useQuery, useMutation } from '@apollo/react-hooks';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import { StyledInput, StyledButton } from '../../styled-components';
-import { CREATE_PROJECT } from '../../mutations';
-import { GET_USER, GET_ALL_USERS } from '../../queries';
+import { UPDATE_PROJECT } from '../../mutations';
+import { GET_PROJ_BY_ID } from '../../queries';
 
-export default function AddProject() {
+export default function EditProject({ id }) {
 	const history = useHistory();
+
+	const { data: queryData } = useQuery(GET_PROJ_BY_ID, { variables: { id } });
 
 	const initialProject = {
 		name: '',
@@ -22,40 +24,36 @@ export default function AddProject() {
 		wantFeedback: false,
 		wantAssistance: false,
 		completed: false,
+		archived: false,
 	};
 
 	const [project, setProject] = useState({ ...initialProject });
 
-	const [createProject, { loading, error, data }] = useMutation(
-		CREATE_PROJECT,
-		{
-			update(cache, { data: { createProject } }) {
-				const { me } = cache.readQuery({ query: GET_USER });
+	useEffect(() => {
+		if (queryData) {
+			const { projectByID } = queryData;
 
-				cache.writeQuery({
-					query: GET_USER,
-					data: { me: { ...me, projects: { ...me.projects, createProject } } },
-				});
+			setProject({
+				name: projectByID.name,
+				description: projectByID.description || '',
+				status: projectByID.status || '',
+				techStack: projectByID.techStack || '',
+				designURL: projectByID.designURL || '',
+				deploymentURL: projectByID.deploymentURL || '',
+				frontEndRepoURL: projectByID.frontEndRepoURL || '',
+				backEndRepoURL: projectByID.backEndRepoURL || '',
+				private: projectByID.private || false,
+				wantFeedback: projectByID.wantFeedback || false,
+				wantAssistance: projectByID.wantAssistance || false,
+				completed: projectByID.completed || false,
+				archived: projectByID.archived || false,
+			});
+		}
+	}, [queryData]);
 
-				const { allUsers } = cache.readQuery({ query: GET_ALL_USERS });
-
-				const {
-					postedBy: { id },
-				} = createProject;
-
-				cache.writeQuery({
-					query: GET_ALL_USERS,
-					data: {
-						allUsers: allUsers.map(user => {
-							if (user.id === id) {
-								user.projects = [...user.projects, createProject];
-							}
-							return user;
-						}),
-					},
-				});
-			},
-		},
+	const [updateProject, { loading, error, data }] = useMutation(
+		UPDATE_PROJECT,
+		{ variables: { id } },
 	);
 
 	useEffect(() => {
@@ -70,14 +68,14 @@ export default function AddProject() {
 
 	const handleSubmit = e => {
 		e.preventDefault();
-		createProject({ variables: { ...project } });
+		updateProject({ variables: { ...project } });
 		setProject({ ...initialProject });
 	};
 
 	return (
-		<StyledAddProjectWrapper>
+		<StyledEditProjectWrapper>
 			<div className='form'>
-				<h2>Add New Project</h2>
+				<h2>Edit Project</h2>
 				{loading && <p>Loading...</p>}
 				{!loading && (
 					<form onSubmit={handleSubmit}>
@@ -177,16 +175,26 @@ export default function AddProject() {
 							/>
 							<label htmlFor='completed'>Completed</label>
 						</div>
+						{/* <div className='checkbox'>
+							<input
+								type='checkbox'
+								id='archived'
+								name='archived'
+								checked={project.archived}
+								onChange={handleChange}
+							/>
+							<label htmlFor='archived'>Archive</label>
+						</div> */}
 						<StyledButton type='submit'>Submit</StyledButton>
 					</form>
 				)}
 				{error && <p>Error!</p>}
 			</div>
-		</StyledAddProjectWrapper>
+		</StyledEditProjectWrapper>
 	);
 }
 
-const StyledAddProjectWrapper = styled.div`
+const StyledEditProjectWrapper = styled.div`
 	padding: 2rem;
 
 	margin: 0 auto;

@@ -165,7 +165,7 @@ const StyledProject = styled.div`
 
 	.project-left {
 		width: 50rem;
-		padding: 4rem;
+		padding: 2rem;
 		border-right: 1px solid silver;
 
 		display: flex;

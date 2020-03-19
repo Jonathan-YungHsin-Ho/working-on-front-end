@@ -30,6 +30,7 @@ const CREATE_PROJECT = gql`
 	mutation CreateProject(
 		$name: String!
 		$description: String
+		$techStack: String
 		$status: String
 		$designURL: String
 		$frontEndRepoURL: String
@@ -43,6 +44,7 @@ const CREATE_PROJECT = gql`
 		createProject(
 			name: $name
 			description: $description
+			techStack: $techStack
 			status: $status
 			designURL: $designURL
 			frontEndRepoURL: $frontEndRepoURL
@@ -59,6 +61,60 @@ const CREATE_PROJECT = gql`
 				id
 			}
 			private
+			description
+			techStack
+			status
+			designURL
+			frontEndRepoURL
+			backEndRepoURL
+			deploymentURL
+			wantFeedback
+			wantAssistance
+			completed
+			archived
+		}
+	}
+`;
+
+const UPDATE_PROJECT = gql`
+	mutation UpdateProject(
+		$id: String!
+		$name: String
+		$description: String
+		$techStack: String
+		$status: String
+		$designURL: String
+		$frontEndRepoURL: String
+		$backEndRepoURL: String
+		$deploymentURL: String
+		$private: Boolean
+		$wantFeedback: Boolean
+		$wantAssistance: Boolean
+		$completed: Boolean
+		$archived: Boolean
+	) {
+		updateProject(
+			id: $id
+			name: $name
+			description: $description
+			techStack: $techStack
+			status: $status
+			designURL: $designURL
+			frontEndRepoURL: $frontEndRepoURL
+			backEndRepoURL: $backEndRepoURL
+			deploymentURL: $deploymentURL
+			private: $private
+			wantFeedback: $wantFeedback
+			wantAssistance: $wantAssistance
+			completed: $completed
+			archived: $archived
+		) {
+			name
+			id
+			postedBy {
+				id
+			}
+			private
 			status
 			wantFeedback
 			wantAssistance
@@ -67,4 +123,4 @@ const CREATE_PROJECT = gql`
 	}
 `;
 
-export { SIGNUP, LOGIN, CREATE_PROJECT };
+export { SIGNUP, LOGIN, CREATE_PROJECT, UPDATE_PROJECT };

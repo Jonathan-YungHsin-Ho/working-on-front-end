@@ -28,7 +28,7 @@ export default function Card({ user }) {
 }
 
 const StyledCard = styled.div`
-	width: 30rem;
+	width: 28rem;
 	padding-bottom: 0.5rem;
 	margin-bottom: 2rem;
 

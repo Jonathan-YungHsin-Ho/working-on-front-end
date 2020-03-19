@@ -15,6 +15,19 @@ const GET_USER = gql`
 			bio
 			projects {
 				id
+				name
+				private
+				description
+				techStack
+				status
+				designURL
+				frontEndRepoURL
+				backEndRepoURL
+				deploymentURL
+				wantFeedback
+				wantAssistance
+				completed
+				archived
 			}
 			followers {
 				id

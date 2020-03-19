@@ -44,7 +44,6 @@ const StyledHeader = styled.div`
 		width: 100%;
 		max-width: 98rem;
 		margin: 0 auto;
-		padding: 0 2rem;
 
 		p {
 			font-size: 2.5rem;
