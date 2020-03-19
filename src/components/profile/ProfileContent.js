@@ -120,7 +120,7 @@ export default function ProfileContent() {
 				<div className='content-right'>
 					{data && (
 						<div>
-							<h3>Current Projects</h3>
+							<h3 className='profile-projects-header'>Current Projects</h3>
 							<div className='profile-projects'>
 								{data.userByID.projects.map(project => (
 									<ProjectRow key={project.id} project={project} />
@@ -168,7 +168,7 @@ const ProfilerWrapper = styled.div`
 		.content-right {
 			flex-grow: 1;
 
-			h3 {
+			.profile-projects-header {
 				margin: 1rem;
 			}
 
