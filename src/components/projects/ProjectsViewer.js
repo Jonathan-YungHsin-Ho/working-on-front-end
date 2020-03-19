@@ -10,10 +10,11 @@ export default function ProjectsViewer() {
 	const { loading, error, data } = useQuery(GET_USER);
 
 	const [editMode, setEditMode] = useState(false);
+	const [projectID, setProjectID] = useState('');
 
 	const handleClickViaCapturing = (id, e) => {
 		e.stopPropagation();
-		console.log(id);
+		setProjectID(id);
 		setEditMode(true);
 	};
 
@@ -42,7 +43,7 @@ export default function ProjectsViewer() {
 				</div>
 			</div>
 			{!editMode && <AddProject />}
-			{editMode && <EditProject />}
+			{editMode && <EditProject id={projectID} />}
 		</StyledProjects>
 	);
 }
