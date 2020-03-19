@@ -39,17 +39,15 @@ export default function Signup() {
 
 			const {
 				data: {
-					signup: {
-						token,
-						user: { id },
-					},
+					signup: { token },
 				},
 			} = res;
 
 			localStorage.setItem('token', token);
-			// localStorage.setItem('userID', id);
-			client.writeData({ data: { isLoggedIn: true, userID: id } });
-			history.push('/home');
+			client.resetStore().then(() => {
+				client.writeData({ data: { isLoggedIn: true } });
+				history.push('/home');
+			});
 		} catch (err) {
 			// console.log(err.graphQLErrors.map(err => err.message));
 		}

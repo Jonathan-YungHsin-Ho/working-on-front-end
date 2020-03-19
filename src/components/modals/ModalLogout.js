@@ -12,10 +12,10 @@ export default function ModalLogout({ handleCloseModal }) {
 
 	const handleLogout = () => {
 		handleCloseModal();
-		localStorage.clear();
+		client.clearStore();
 		client.writeData({ data: { isLoggedIn: false } });
 		history.push('/');
-		client.clearStore().then(() => client.resetStore());
+		localStorage.clear();
 	};
 
 	return (

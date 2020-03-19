@@ -7,8 +7,6 @@ import { ProjectRow } from './';
 export default function Card({ user }) {
 	const { username, id, projects } = user;
 
-	console.log(id);
-
 	return (
 		<StyledCard>
 			<div className='card-user'>

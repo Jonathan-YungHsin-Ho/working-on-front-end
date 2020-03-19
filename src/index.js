@@ -11,17 +11,17 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-const getToken = () => {
-	const token = localStorage.getItem('token');
-	return token ? `Bearer ${token}` : '';
-};
-
 const cache = new InMemoryCache();
 
 const client = new ApolloClient({
+	// uri: 'http://localhost:4000/',
 	uri: process.env.REACT_APP_BACKEND,
-	request: operation =>
-		operation.setContext({ headers: { Authorization: getToken() } }),
+	request: operation => {
+		const token = localStorage.getItem('token');
+		operation.setContext({
+			headers: { Authorization: token ? `Bearer ${token}` : '' },
+		});
+	},
 	cache,
 	resolvers: {},
 });
@@ -33,6 +33,7 @@ const data = {
 cache.writeData({ data });
 
 client.onResetStore(() => cache.writeData({ data }));
+client.onClearStore(() => cache.writeData({ data }));
 
 library.add(fas, far, fab);
 

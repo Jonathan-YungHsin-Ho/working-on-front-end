@@ -25,17 +25,15 @@ export default function Login() {
 
 			const {
 				data: {
-					login: {
-						token,
-						user: { id },
-					},
+					login: { token },
 				},
 			} = res;
 
 			localStorage.setItem('token', token);
-			// localStorage.setItem('userID', id);
-			client.writeData({ data: { isLoggedIn: true, userID: id } });
-			history.push('/home');
+			client.resetStore().then(() => {
+				client.writeData({ data: { isLoggedIn: true } });
+				history.push('/home');
+			});
 		} catch (err) {
 			// console.log(err.graphQLErrors.map(err => err.message));
 			setUser(initialLogin);
