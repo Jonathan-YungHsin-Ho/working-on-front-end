@@ -35,7 +35,10 @@ export default function HomeHeader() {
 							</ProjectsButton>
 						</div>
 						<div className='user-right-middle'>
-							<div>{data.me.projects.length} projects</div>
+							<div>
+								{data.me.projects.length} project
+								{data.me.projects.length !== 1 && 's'}
+							</div>
 							{/* <div>{data.me.followers.length} followers</div>
 							<div>{data.me.following.length} following</div> */}
 						</div>
