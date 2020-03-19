@@ -11,11 +11,10 @@ export default function ProjectRow({ project }) {
 	const { showModal, handleModal } = useModal();
 
 	return (
-		!project.private && (
-			<StyledProjectRow isLoggedIn={isLoggedIn}>
-				<div className='project-row-top'>
-					<div>
-						{/* {isLoggedIn && (
+		<StyledProjectRow isLoggedIn={isLoggedIn}>
+			<div className='project-row-top'>
+				<div>
+					{/* {isLoggedIn && (
 							<>
 								<FontAwesomeIcon
 									icon={['far', 'star']}
@@ -31,48 +30,47 @@ export default function ProjectRow({ project }) {
 								/>
 							</>
 						)} */}
-						<div
-							className='project-name'
-							onClick={() => handleModal({ type: 'open' })}>
-							{project.name}
-						</div>
-					</div>
-					<div>
-						{project.wantAssistance && (
-							<FontAwesomeIcon
-								icon={['fas', 'plus-circle']}
-								size='lg'
-								color='#ed1b2e'
-								className='icon-help'
-							/>
-						)}
-						{project.wantFeedback && (
-							<FontAwesomeIcon
-								icon={['fas', 'comment-dots']}
-								size='lg'
-								color='cornflowerblue'
-								className='icon-feedback'
-							/>
-						)}
-						{project.completed && (
-							<FontAwesomeIcon
-								icon={['fas', 'check']}
-								size='lg'
-								color='green'
-								className='icon-feedback'
-							/>
-						)}
+					<div
+						className='project-name'
+						onClick={() => handleModal({ type: 'open' })}>
+						{project.name}
 					</div>
 				</div>
-				<div className='project-status'>{project.status}</div>
-				{showModal && (
-					<ModalProject
-						handleCloseModal={() => handleModal({ type: 'close' })}
-						id={project?.id}
-					/>
-				)}
-			</StyledProjectRow>
-		)
+				<div>
+					{project.wantAssistance && (
+						<FontAwesomeIcon
+							icon={['fas', 'plus-circle']}
+							size='lg'
+							color='#ed1b2e'
+							className='icon-help'
+						/>
+					)}
+					{project.wantFeedback && (
+						<FontAwesomeIcon
+							icon={['fas', 'comment-dots']}
+							size='lg'
+							color='cornflowerblue'
+							className='icon-feedback'
+						/>
+					)}
+					{project.completed && (
+						<FontAwesomeIcon
+							icon={['fas', 'check']}
+							size='lg'
+							color='green'
+							className='icon-feedback'
+						/>
+					)}
+				</div>
+			</div>
+			<div className='project-status'>{project.status}</div>
+			{showModal && (
+				<ModalProject
+					handleCloseModal={() => handleModal({ type: 'close' })}
+					id={project?.id}
+				/>
+			)}
+		</StyledProjectRow>
 	);
 }
 

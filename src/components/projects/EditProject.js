@@ -135,7 +135,7 @@ export default function EditProject({ id }) {
 							placeholder='Deployment URL'
 							onChange={handleChange}
 						/>
-						<div className='checkbox'>
+						{/* <div className='checkbox'>
 							<input
 								type='checkbox'
 								id='private'
@@ -144,7 +144,7 @@ export default function EditProject({ id }) {
 								onChange={handleChange}
 							/>
 							<label htmlFor='private'>Private</label>
-						</div>
+						</div> */}
 						<div className='checkbox'>
 							<input
 								type='checkbox'
@@ -175,7 +175,7 @@ export default function EditProject({ id }) {
 							/>
 							<label htmlFor='completed'>Completed</label>
 						</div>
-						<div className='checkbox'>
+						{/* <div className='checkbox'>
 							<input
 								type='checkbox'
 								id='archived'
@@ -184,7 +184,7 @@ export default function EditProject({ id }) {
 								onChange={handleChange}
 							/>
 							<label htmlFor='archived'>Archive</label>
-						</div>
+						</div> */}
 						<StyledButton type='submit'>Submit</StyledButton>
 					</form>
 				)}

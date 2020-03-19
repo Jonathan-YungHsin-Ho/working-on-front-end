@@ -137,7 +137,7 @@ export default function AddProject() {
 							placeholder='Deployment URL'
 							onChange={handleChange}
 						/>
-						<div className='checkbox'>
+						{/* <div className='checkbox'>
 							<input
 								type='checkbox'
 								id='private'
@@ -146,7 +146,7 @@ export default function AddProject() {
 								onChange={handleChange}
 							/>
 							<label htmlFor='private'>Private</label>
-						</div>
+						</div> */}
 						<div className='checkbox'>
 							<input
 								type='checkbox'
