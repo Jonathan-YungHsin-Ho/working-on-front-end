@@ -47,7 +47,9 @@ const StyledHeader = styled.div`
 
 			.icon {
 				display: inline-block;
-				width: 6rem;
+				width: 5rem;
+				margin-right: 1rem;
+				text-align: center;
 			}
 
 			.logo {
