@@ -3,6 +3,7 @@ import { useQuery } from '@apollo/react-hooks';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import { Avatar } from '.';
+import { StyledButton } from '../../styled-components';
 import { GET_USER } from '../../queries';
 
 export default function HomeHeader() {
@@ -29,7 +30,9 @@ export default function HomeHeader() {
 						<div className='user-right-top'>
 							<h2>{data.me.username}</h2>
 							{/* <button onClick={handleEditProfile}>Edit Profile</button> */}
-							<button onClick={handleViewProjects}>Add Projects</button>
+							<ProjectsButton onClick={handleViewProjects}>
+								View Projects
+							</ProjectsButton>
 						</div>
 						<div className='user-right-middle'>
 							<div>{data.me.projects.length} projects</div>
@@ -70,4 +73,9 @@ const StyledUserWrapper = styled.div`
 			cursor: pointer;
 		}
 	}
+`;
+
+const ProjectsButton = styled(StyledButton)`
+	margin: 0;
+	width: 12rem;
 `;

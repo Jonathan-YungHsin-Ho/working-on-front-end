@@ -1,3 +1,5 @@
+import ProjectsViewer from './ProjectsViewer';
 import AddProject from './AddProject';
+import EditProject from './EditProject';
 
-export { AddProject };
+export { ProjectsViewer, AddProject, EditProject };

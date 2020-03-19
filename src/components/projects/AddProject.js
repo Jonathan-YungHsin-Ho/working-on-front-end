@@ -188,14 +188,15 @@ export default function AddProject() {
 
 const StyledAddProjectWrapper = styled.div`
 	padding: 2rem;
-	border-bottom: 1px solid silver;
+
+	margin: 0 auto;
 
 	.form {
 		width: 30rem;
 		margin: 0 auto;
 
 		h2 {
-			margin-bottom: 1rem;
+			margin-bottom: 2rem;
 		}
 
 		textarea {
