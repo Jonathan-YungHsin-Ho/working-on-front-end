@@ -13,6 +13,13 @@ const GET_USER = gql`
 			username
 			avatarURL
 			bio
+			name
+			email
+			techStack
+			githubURL
+			linkedinURL
+			portfolioURL
+			twitterURL
 			projects {
 				id
 				name

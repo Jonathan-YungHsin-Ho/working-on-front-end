@@ -1,6 +1,6 @@
 import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { Avatar } from '.';
 import { StyledButton } from '../../styled-components';
@@ -8,9 +8,8 @@ import { GET_USER } from '../../queries';
 
 export default function HomeHeader() {
 	const history = useHistory();
-	const { loading, error, data } = useQuery(GET_USER);
 
-	// const handleEditProfile = () => history.push('/updateprofile');
+	const { loading, error, data } = useQuery(GET_USER);
 
 	const handleViewProjects = () => history.push('/projects');
 
@@ -20,15 +19,19 @@ export default function HomeHeader() {
 			{error && <p>Error!</p>}
 			{data && (
 				<>
-					<Avatar
-						width='12'
-						height='12'
-						marginRight='2'
-						avatarURL={data.me.avatarURL}
-					/>
+					<Link to={`/profile/${data.me.id}`}>
+						<Avatar
+							width='12'
+							height='12'
+							marginRight='2'
+							avatarURL={data.me.avatarURL}
+						/>
+					</Link>
 					<div className='user-right-panel'>
 						<div className='user-right-top'>
-							<h2>{data.me.username}</h2>
+							<h2 className='user-username'>
+								<Link to='/account'>{data.me.username}</Link>
+							</h2>
 							{/* <button onClick={handleEditProfile}>Edit Profile</button> */}
 							<ProjectsButton onClick={handleViewProjects}>
 								View Projects
@@ -71,6 +74,13 @@ const StyledUserWrapper = styled.div`
 	}
 
 	.user-right-top {
+		.user-username {
+			a {
+				color: inherit;
+				text-decoration: none;
+			}
+		}
+
 		button {
 			/* margin-left: 2rem; */
 			cursor: pointer;

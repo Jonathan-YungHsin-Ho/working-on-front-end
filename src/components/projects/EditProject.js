@@ -1,15 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useQuery, useMutation } from '@apollo/react-hooks';
-import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import { StyledInput, StyledButton } from '../../styled-components';
 import { UPDATE_PROJECT } from '../../mutations';
 import { GET_PROJ_BY_ID } from '../../queries';
 
 export default function EditProject({ id }) {
-	const history = useHistory();
-
-	const { data: queryData } = useQuery(GET_PROJ_BY_ID, { variables: { id } });
+	const { data } = useQuery(GET_PROJ_BY_ID, { variables: { id } });
 
 	const initialProject = {
 		name: '',
@@ -30,8 +27,8 @@ export default function EditProject({ id }) {
 	const [project, setProject] = useState({ ...initialProject });
 
 	useEffect(() => {
-		if (queryData) {
-			const { projectByID } = queryData;
+		if (data) {
+			const { projectByID } = data;
 
 			setProject({
 				name: projectByID.name,
@@ -49,16 +46,9 @@ export default function EditProject({ id }) {
 				archived: projectByID.archived || false,
 			});
 		}
-	}, [queryData]);
-
-	const [updateProject, { loading, error, data }] = useMutation(
-		UPDATE_PROJECT,
-		{ variables: { id } },
-	);
-
-	useEffect(() => {
-		if (data) history.push('/home');
 	}, [data]);
+
+	const [updateProject, { loading, error }] = useMutation(UPDATE_PROJECT);
 
 	const handleChange = e => {
 		const value =
@@ -68,8 +58,7 @@ export default function EditProject({ id }) {
 
 	const handleSubmit = e => {
 		e.preventDefault();
-		updateProject({ variables: { ...project } });
-		setProject({ ...initialProject });
+		updateProject({ variables: { ...project, id } });
 	};
 
 	return (

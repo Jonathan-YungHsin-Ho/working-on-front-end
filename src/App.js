@@ -11,6 +11,7 @@ import {
 	PrivateRoute,
 	Profile,
 	Projects,
+	Account,
 } from './pages';
 import { useIsLoggedIn } from './hooks';
 
@@ -28,6 +29,7 @@ function App() {
 			<PrivateRoute path='/home' component={Home} />
 			<PrivateRoute path='/explore' component={Explore} />
 			<PrivateRoute path='/projects' component={Projects} />
+			<PrivateRoute path='/account' component={Account} />
 		</div>
 	);
 }
