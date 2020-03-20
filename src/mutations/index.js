@@ -123,4 +123,46 @@ const UPDATE_PROJECT = gql`
 	}
 `;
 
-export { SIGNUP, LOGIN, CREATE_PROJECT, UPDATE_PROJECT };
+const UPDATE_USER = gql`
+	mutation UpdateUser(
+		$username: String
+		$password: String
+		$name: String
+		$email: String
+		$bio: String
+		$techStack: String
+		$avatarURL: String
+		$githubURL: String
+		$linkedinURL: String
+		$portfolioURL: String
+		$twitterURL: String
+	) {
+		updateUser(
+			username: $username
+			password: $password
+			name: $name
+			email: $email
+			bio: $bio
+			techStack: $techStack
+			avatarURL: $avatarURL
+			githubURL: $githubURL
+			linkedinURL: $linkedinURL
+			portfolioURL: $portfolioURL
+			twitterURL: $twitterURL
+		) {
+			id
+			username
+			name
+			email
+			bio
+			techStack
+			avatarURL
+			githubURL
+			linkedinURL
+			portfolioURL
+			twitterURL
+		}
+	}
+`;
+
+export { SIGNUP, LOGIN, CREATE_PROJECT, UPDATE_PROJECT, UPDATE_USER };

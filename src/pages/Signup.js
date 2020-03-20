@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/react-hooks';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useHistory, Redirect } from 'react-router-dom';
 import { StyledForm, StyledInput, StyledButton } from '../styled-components';
 import { Logo } from '../components/navbar';
 import { SIGNUP } from '../mutations';
 import { GET_ALL_USERS } from '../queries';
+import { useIsLoggedIn } from '../hooks';
 
 export default function Signup() {
 	const history = useHistory();
+
+	const isLoggedIn = useIsLoggedIn();
 
 	const initialSignup = { email: '', username: '', password: '' };
 
@@ -52,6 +55,8 @@ export default function Signup() {
 			// console.log(err.graphQLErrors.map(err => err.message));
 		}
 	};
+
+	if (isLoggedIn) return <Redirect to='/home' />;
 
 	return (
 		<StyledForm>

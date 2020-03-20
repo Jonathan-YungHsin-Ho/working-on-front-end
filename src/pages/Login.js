@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/react-hooks';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useHistory, Redirect } from 'react-router-dom';
 import { StyledForm, StyledInput, StyledButton } from '../styled-components';
 import { Logo } from '../components/navbar';
 import { LOGIN } from '../mutations';
+import { useIsLoggedIn } from '../hooks';
 
 export default function Login() {
 	const history = useHistory();
+
+	const isLoggedIn = useIsLoggedIn();
 
 	const initialLogin = { email: '', password: '' };
 
@@ -39,6 +42,8 @@ export default function Login() {
 			setUser(initialLogin);
 		}
 	};
+
+	if (isLoggedIn) return <Redirect to='/home' />;
 
 	return (
 		<StyledForm>
