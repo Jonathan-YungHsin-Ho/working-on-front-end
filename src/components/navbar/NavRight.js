@@ -2,6 +2,7 @@ import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Avatar } from '../home';
 import { ModalLogout } from '../modals';
 import { useModal, useIsLoggedIn } from '../../hooks';
@@ -24,20 +25,55 @@ export default function NavRight() {
 			)}
 			{isLoggedIn && (
 				<>
-					{/* <NavLink to='/home'>Home</NavLink> */}
-					<NavLink to='/explore'>Explore</NavLink>
-					<div className='logout' onClick={() => handleModal({ type: 'open' })}>
-						Logout
+					{/* <NavLink to='/explore'>
+						<FontAwesomeIcon
+							icon={['fas', 'search']}
+							size='lg'
+							color='black'
+						/>
+					</NavLink> */}
+					<NavLink to='/home' title='Home'>
+						<FontAwesomeIcon icon={['fas', 'home']} size='lg' color='black' />
+					</NavLink>
+					<NavLink to={`/profile/${data?.me.id}`} title='Profile'>
+						<FontAwesomeIcon
+							icon={['far', 'address-card']}
+							size='lg'
+							color='black'
+						/>
+					</NavLink>
+					<NavLink to='/projects' title='Projects'>
+						<FontAwesomeIcon
+							icon={['far', 'list-alt']}
+							size='lg'
+							color='black'
+						/>
+					</NavLink>
+					<NavLink to='/account' title='Account'>
+						<FontAwesomeIcon
+							icon={['fas', 'user-cog']}
+							size='lg'
+							color='black'
+						/>
+					</NavLink>
+					<div
+						className='logout'
+						title='Logout'
+						onClick={() => handleModal({ type: 'open' })}>
+						<FontAwesomeIcon
+							icon={['fas', 'sign-out-alt']}
+							size='lg'
+							color='black'
+						/>
 					</div>
-					{/* <NavLink to='/profile'> */}
-					<NavLink to='/home'>
+					{/* <NavLink to='/home'>
 						<Avatar
 							className='avatar'
 							width='3'
 							height='3'
 							avatarURL={data?.me.avatarURL}
 						/>
-					</NavLink>
+					</NavLink> */}
 				</>
 			)}
 			{showModal && (
@@ -51,8 +87,6 @@ const StyledNavRight = styled.div`
 	display: flex;
 	justify-content: flex-end;
 	align-items: center;
-
-	width: 16rem;
 
 	a {
 		margin-left: 2rem;

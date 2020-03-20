@@ -8,9 +8,10 @@ import { DELETE_PROJECT } from '../../mutations';
 
 export default function DeleteProject({ id, name }) {
 	// const { showModal, handleModal } = useModal();
-	// const [deleteProject, { loading, error, data }] = useMutation(DELETE_PROJECT);
+	const [deleteProject, { loading, error, data }] = useMutation(DELETE_PROJECT);
 
 	const handleClick = () => {
+		console.log('HI');
 		// handleModal({ type: 'open' });
 		// deleteProject();
 	};
@@ -41,7 +42,7 @@ const StyledDelete = styled.div`
 	align-items: center;
 	padding: 0 2rem;
 
-	margin-left: 1rem;
+	/* margin-left: 1rem; */
 
 	.icon {
 		cursor: pointer;

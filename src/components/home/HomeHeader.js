@@ -19,7 +19,7 @@ export default function HomeHeader() {
 			{error && <p>Error!</p>}
 			{data && (
 				<>
-					<Link to={`/profile/${data.me.id}`}>
+					<Link to={`/profile/${data.me.id}`} title='View Profile'>
 						<Avatar
 							width='12'
 							height='12'
@@ -29,12 +29,12 @@ export default function HomeHeader() {
 					</Link>
 					<div className='user-right-panel'>
 						<div className='user-right-top'>
-							<h2 className='user-username'>
+							<h2 className='user-username' title='View Account'>
 								<Link to='/account'>{data.me.username}</Link>
 							</h2>
 							{/* <button onClick={handleEditProfile}>Edit Profile</button> */}
 							<ProjectsButton onClick={handleViewProjects}>
-								View Projects
+								Add/Edit Projects
 							</ProjectsButton>
 						</div>
 						<div className='user-right-middle'>
