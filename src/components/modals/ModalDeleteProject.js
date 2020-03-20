@@ -1,24 +1,38 @@
 import React from 'react';
-// import { useHistory } from 'react-router-dom';
-// import { useApolloClient } from '@apollo/react-hooks';
 import { useMutation } from '@apollo/react-hooks';
 import styled from 'styled-components';
 import { ScreenOverlay } from '.';
 import { StyledButton } from '../../styled-components';
 import { DELETE_PROJECT } from '../../mutations';
+import { GET_USER } from '../../queries';
 
 export default function ModalDeleteProject({ handleCloseModal, name, id }) {
-	// const [deleteProject, { loading, error, data }] = useMutation(DELETE_PROJECT);
-	// const history = useHistory();
+	const [deleteProject] = useMutation(DELETE_PROJECT, {
+		update(cache, { data: { deleteProject } }) {
+			const { me } = cache.readQuery({ query: GET_USER });
 
-	// const client = useApolloClient();
+			cache.writeQuery({
+				query: GET_USER,
+				data: {
+					me: {
+						...me,
+						projects: me.projects.filter(
+							project => project.id !== deleteProject.id,
+						),
+					},
+				},
+			});
+
+			handleCloseModal();
+		},
+	});
 
 	const handleLogout = () => {
-		handleCloseModal();
-		// client.clearStore();
-		// client.writeData({ data: { isLoggedIn: false } });
-		// history.push('/');
-		// localStorage.clear();
+		try {
+			deleteProject({ variables: { id } });
+		} catch (err) {
+			console.log(err);
+		}
 	};
 
 	return (

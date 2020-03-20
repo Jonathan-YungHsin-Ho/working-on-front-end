@@ -1,14 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useMutation } from '@apollo/react-hooks';
-import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import { StyledInput, StyledButton } from '../../styled-components';
 import { CREATE_PROJECT } from '../../mutations';
 import { GET_USER, GET_ALL_USERS } from '../../queries';
 
 export default function AddProject() {
-	const history = useHistory();
-
 	const initialProject = {
 		name: '',
 		description: '',
@@ -26,41 +23,9 @@ export default function AddProject() {
 
 	const [project, setProject] = useState({ ...initialProject });
 
-	const [createProject, { loading, error, data }] = useMutation(
-		CREATE_PROJECT,
-		{
-			update(cache, { data: { createProject } }) {
-				const { me } = cache.readQuery({ query: GET_USER });
-
-				cache.writeQuery({
-					query: GET_USER,
-					data: { me: { ...me, projects: { ...me.projects, createProject } } },
-				});
-
-				const { allUsers } = cache.readQuery({ query: GET_ALL_USERS });
-
-				const {
-					postedBy: { id },
-				} = createProject;
-
-				cache.writeQuery({
-					query: GET_ALL_USERS,
-					data: {
-						allUsers: allUsers.map(user => {
-							if (user.id === id) {
-								user.projects = [...user.projects, createProject];
-							}
-							return user;
-						}),
-					},
-				});
-			},
-		},
-	);
-
-	// useEffect(() => {
-	// 	if (data) history.push('/home');
-	// }, [data]);
+	const [createProject, { loading, error }] = useMutation(CREATE_PROJECT, {
+		refetchQueries: [{ query: GET_USER }, { query: GET_ALL_USERS }],
+	});
 
 	const handleChange = e => {
 		const value =

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useIsLoggedIn } from '../../hooks';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useIsLoggedIn } from '../../hooks';
 import { ModalProject } from '../modals';
 import { useModal } from '../../hooks';
 

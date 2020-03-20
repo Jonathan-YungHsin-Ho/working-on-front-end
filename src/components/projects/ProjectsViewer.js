@@ -39,7 +39,7 @@ export default function ProjectsViewer() {
 								onClickCapture={e => handleClickViaCapturing(project.id, e)}>
 								<ProjectRow project={project} />
 							</div>
-							{/* <DeleteProject id={project.id} name={project.name} /> */}
+							<DeleteProject id={project.id} name={project.name} />
 						</div>
 					))}
 				</div>
@@ -86,7 +86,7 @@ const StyledProjects = styled.div`
 
 					flex-grow: 1;
 
-					/* border-right: 1px solid silver; */
+					border-right: 1px solid silver;
 
 					div {
 						border-bottom: 0;
