@@ -64,7 +64,9 @@ export default function EditProject({ id }) {
 	return (
 		<StyledEditProjectWrapper>
 			<div className='form'>
-				<h2>Edit Project</h2>
+				<div>
+					<h2>Edit Project</h2>
+				</div>
 				{loading && <p>Loading...</p>}
 				{!loading && (
 					<form onSubmit={handleSubmit}>

@@ -5,12 +5,12 @@ import { StyledForm, StyledInput, StyledButton } from '../styled-components';
 import { Logo } from '../components/navbar';
 import { SIGNUP } from '../mutations';
 import { GET_ALL_USERS } from '../queries';
-import { useIsLoggedIn } from '../hooks';
+// import { useIsLoggedIn } from '../hooks';
 
 export default function Signup() {
 	const history = useHistory();
 
-	const { isLoggedIn } = useIsLoggedIn();
+	// const { isLoggedIn } = useIsLoggedIn();
 
 	const initialSignup = { email: '', username: '', password: '' };
 
@@ -56,7 +56,8 @@ export default function Signup() {
 		}
 	};
 
-	if (isLoggedIn) return <Redirect to='/home' />;
+	// if (isLoggedIn) return <Redirect to='/home' />;
+	if (!!localStorage.getItem('token')) return <Redirect to='/home' />;
 
 	return (
 		<StyledForm>

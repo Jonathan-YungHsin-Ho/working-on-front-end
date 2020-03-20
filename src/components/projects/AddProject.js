@@ -58,9 +58,9 @@ export default function AddProject() {
 		},
 	);
 
-	useEffect(() => {
-		if (data) history.push('/home');
-	}, [data]);
+	// useEffect(() => {
+	// 	if (data) history.push('/home');
+	// }, [data]);
 
 	const handleChange = e => {
 		const value =

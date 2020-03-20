@@ -123,6 +123,15 @@ const UPDATE_PROJECT = gql`
 	}
 `;
 
+const DELETE_PROJECT = gql`
+	mutation DeleteProject($id: String!) {
+		deleteProject(id: $id)
+	}
+	{
+		id
+	}
+`;
+
 const UPDATE_USER = gql`
 	mutation UpdateUser(
 		$username: String
@@ -178,6 +187,7 @@ export {
 	LOGIN,
 	CREATE_PROJECT,
 	UPDATE_PROJECT,
+	DELETE_PROJECT,
 	UPDATE_USER,
 	UPDATE_IMG,
 };

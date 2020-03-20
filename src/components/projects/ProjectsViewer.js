@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import styled from 'styled-components';
-import { AddProject, EditProject } from '.';
+import { AddProject, EditProject, DeleteProject } from '.';
 import { ProjectRow } from '../card';
 import { StyledButton } from '../../styled-components';
 import { GET_USER } from '../../queries';
@@ -33,11 +33,13 @@ export default function ProjectsViewer() {
 					{loading && <p>Loading...</p>}
 					{error && <p>Error!</p>}
 					{data?.me.projects.map(project => (
-						<div
-							className='project-edit'
-							onClickCapture={e => handleClickViaCapturing(project.id, e)}
-							key={project.id}>
-							<ProjectRow project={project} />
+						<div key={project.id} className='project-row'>
+							<div
+								className='project-edit'
+								onClickCapture={e => handleClickViaCapturing(project.id, e)}>
+								<ProjectRow project={project} />
+							</div>
+							{/* <DeleteProject id={project.id} name={project.name} /> */}
 						</div>
 					))}
 				</div>
@@ -73,8 +75,23 @@ const StyledProjects = styled.div`
 		.projects-left-bottom {
 			padding-bottom: 1rem;
 
-			.project-edit {
-				cursor: pointer;
+			.project-row {
+				display: flex;
+				width: 100%;
+				justify-content: space-between;
+				border-bottom: 1px solid silver;
+
+				.project-edit {
+					cursor: pointer;
+
+					flex-grow: 1;
+
+					/* border-right: 1px solid silver; */
+
+					div {
+						border-bottom: 0;
+					}
+				}
 			}
 		}
 	}
