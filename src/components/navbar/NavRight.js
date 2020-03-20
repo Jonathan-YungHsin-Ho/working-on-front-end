@@ -66,14 +66,14 @@ export default function NavRight() {
 							color='black'
 						/>
 					</div>
-					{/* <NavLink to='/home'>
+					<NavLink to='/home'>
 						<Avatar
 							className='avatar'
 							width='3'
 							height='3'
 							avatarURL={data?.me.avatarURL}
 						/>
-					</NavLink> */}
+					</NavLink>
 				</>
 			)}
 			{showModal && (
