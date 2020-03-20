@@ -4,12 +4,12 @@ import { Link, useHistory, Redirect } from 'react-router-dom';
 import { StyledForm, StyledInput, StyledButton } from '../styled-components';
 import { Logo } from '../components/navbar';
 import { LOGIN } from '../mutations';
-import { useIsLoggedIn } from '../hooks';
+// import { useIsLoggedIn } from '../hooks';
 
 export default function Login() {
 	const history = useHistory();
 
-	const { isLoggedIn } = useIsLoggedIn();
+	// const { isLoggedIn } = useIsLoggedIn();
 
 	const initialLogin = { email: '', password: '' };
 
@@ -43,7 +43,8 @@ export default function Login() {
 		}
 	};
 
-	if (isLoggedIn) return <Redirect to='/home' />;
+	// if (isLoggedIn) return <Redirect to='/home' />;
+	if (!!localStorage.getItem('token')) return <Redirect to='/home' />;
 
 	return (
 		<StyledForm>
