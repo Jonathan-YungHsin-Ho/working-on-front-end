@@ -1,20 +1,16 @@
 import React from 'react';
-import { useMutation } from '@apollo/react-hooks';
+// import { useMutation } from '@apollo/react-hooks';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { DELETE_PROJECT } from '../../mutations';
-// import { useModal } from '../../hooks';
-// import { ModalDeleteProject } from '../modals';
+// import { DELETE_PROJECT } from '../../mutations';
+import { useModal } from '../../hooks';
+import { ModalDeleteProject } from '../modals';
 
 export default function DeleteProject({ id, name }) {
-	// const { showModal, handleModal } = useModal();
-	const [deleteProject, { loading, error, data }] = useMutation(DELETE_PROJECT);
+	const { showModal, handleModal } = useModal();
+	// const [deleteProject, { loading, error, data }] = useMutation(DELETE_PROJECT);
 
-	const handleClick = () => {
-		console.log('HI');
-		// handleModal({ type: 'open' });
-		// deleteProject();
-	};
+	const handleClick = () => handleModal({ type: 'open' });
 
 	return (
 		<StyledDelete>
@@ -25,13 +21,13 @@ export default function DeleteProject({ id, name }) {
 				onClick={handleClick}
 				className='icon'
 			/>
-			{/* {showModal && (
+			{showModal && (
 				<ModalDeleteProject
 					handleCloseModal={() => handleModal({ type: 'close' })}
 					id={id}
 					name={name}
 				/>
-			)} */}
+			)}
 		</StyledDelete>
 	);
 }
