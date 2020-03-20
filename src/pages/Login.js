@@ -9,7 +9,7 @@ import { useIsLoggedIn } from '../hooks';
 export default function Login() {
 	const history = useHistory();
 
-	const isLoggedIn = useIsLoggedIn();
+	const { isLoggedIn } = useIsLoggedIn();
 
 	const initialLogin = { email: '', password: '' };
 

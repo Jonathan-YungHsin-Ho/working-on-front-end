@@ -165,4 +165,19 @@ const UPDATE_USER = gql`
 	}
 `;
 
-export { SIGNUP, LOGIN, CREATE_PROJECT, UPDATE_PROJECT, UPDATE_USER };
+const UPDATE_IMG = gql`
+	mutation UpdateImage($avatarURL: String) {
+		updateUser(avatarURL: $avatarURL) {
+			avatarURL
+		}
+	}
+`;
+
+export {
+	SIGNUP,
+	LOGIN,
+	CREATE_PROJECT,
+	UPDATE_PROJECT,
+	UPDATE_USER,
+	UPDATE_IMG,
+};

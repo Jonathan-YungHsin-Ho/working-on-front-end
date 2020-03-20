@@ -15,4 +15,10 @@ const StyledAvatar = styled.div`
 	border-radius: 50%;
 
 	background-color: rebeccapurple;
+
+	background-image: url(${props => props.avatarURL});
+	background-size: cover;
+	background-repeat: no-repeat;
+
+	/* cursor: pointer; */
 `;

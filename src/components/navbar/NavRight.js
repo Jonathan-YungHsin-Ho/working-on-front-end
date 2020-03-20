@@ -1,14 +1,18 @@
 import React from 'react';
+import { useQuery } from '@apollo/react-hooks';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import { Avatar } from '../home';
 import { ModalLogout } from '../modals';
 import { useModal, useIsLoggedIn } from '../../hooks';
+import { GET_IMG } from '../../queries';
 
 export default function NavRight() {
 	const { isLoggedIn } = useIsLoggedIn();
 
 	const { showModal, handleModal } = useModal();
+
+	const { data } = useQuery(GET_IMG);
 
 	return (
 		<StyledNavRight>
@@ -27,7 +31,12 @@ export default function NavRight() {
 					</div>
 					{/* <NavLink to='/profile'> */}
 					<NavLink to='/home'>
-						<Avatar className='avatar' width='3' height='3' />
+						<Avatar
+							className='avatar'
+							width='3'
+							height='3'
+							avatarURL={data?.me.avatarURL}
+						/>
 					</NavLink>
 				</>
 			)}

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import styled from 'styled-components';
+import { UpdateAvatar } from '.';
 import { StyledInput, StyledButton } from '../../styled-components';
 import { GET_USER } from '../../queries';
 import { UPDATE_USER } from '../../mutations';
@@ -55,6 +56,7 @@ export default function EditProfile() {
 				{loading && <p>Loading...</p>}
 				{!loading && (
 					<form onSubmit={handleSubmit}>
+						<UpdateAvatar />
 						<StyledInput
 							type='text'
 							name='name'
@@ -130,7 +132,7 @@ const EditWrapper = styled.div`
 		margin: 0 auto;
 
 		h2 {
-			margin-bottom: 2rem;
+			margin-bottom: 1rem;
 		}
 
 		textarea {
