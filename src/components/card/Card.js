@@ -5,13 +5,13 @@ import { Avatar } from '../home';
 import { ProjectRow } from './';
 
 export default function Card({ user }) {
-	const { username, id, projects } = user;
+	const { username, avatarURL, id, projects } = user;
 
 	return (
 		<StyledCard>
 			<div className='card-user'>
 				<Link to={`/profile/${id}`} className='card-user-left'>
-					<Avatar width='3' height='3' marginRight='1' />
+					<Avatar width='3' height='3' marginRight='1' avatarURL={avatarURL} />
 					{username}
 				</Link>
 				{/* <button>Follow</button> */}

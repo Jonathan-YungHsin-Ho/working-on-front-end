@@ -50,6 +50,7 @@ const GET_ALL_USERS = gql`
 	query {
 		allUsers {
 			username
+			avatarURL
 			id
 			projects {
 				name
@@ -119,4 +120,20 @@ const GET_USER_BY_ID = gql`
 	}
 `;
 
-export { GET_INFO, GET_USER, GET_ALL_USERS, GET_PROJ_BY_ID, GET_USER_BY_ID };
+const GET_IMG = gql`
+	query {
+		me {
+			id
+			avatarURL
+		}
+	}
+`;
+
+export {
+	GET_INFO,
+	GET_USER,
+	GET_ALL_USERS,
+	GET_PROJ_BY_ID,
+	GET_USER_BY_ID,
+	GET_IMG,
+};
