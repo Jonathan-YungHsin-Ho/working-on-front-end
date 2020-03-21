@@ -109,7 +109,7 @@ export default function ModalProject({ handleCloseModal, id }) {
 								{data.projectByID.wantAssistance && (
 									<div className='project-boolean'>
 										<FontAwesomeIcon
-											icon={['fas', 'plus-circle']}
+											icon={['fas', 'hands-helping']}
 											size='lg'
 											color='#ed1b2e'
 										/>

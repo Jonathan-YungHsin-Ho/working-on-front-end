@@ -39,7 +39,8 @@ export default function ProjectRow({ project }) {
 				<div>
 					{project.wantAssistance && (
 						<FontAwesomeIcon
-							icon={['fas', 'plus-circle']}
+							// icon={['fas', 'life-ring']}
+							icon={['fas', 'hands-helping']}
 							size='lg'
 							color='#ed1b2e'
 							className='icon-help'
