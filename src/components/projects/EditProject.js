@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import styled from 'styled-components';
 import { StyledInput, StyledButton } from '../../styled-components';
+import { Loading } from '../misc';
 import { UPDATE_PROJECT } from '../../mutations';
 import { GET_PROJ_BY_ID } from '../../queries';
 
@@ -67,7 +68,7 @@ export default function EditProject({ id }) {
 				<div>
 					<h2>Edit Project</h2>
 				</div>
-				{loading && <p>Loading...</p>}
+				{loading && <Loading />}
 				{!loading && (
 					<form onSubmit={handleSubmit}>
 						<StyledInput

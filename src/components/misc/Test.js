@@ -1,6 +1,7 @@
 import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
-import { GET_INFO } from '../queries';
+import { Loading } from '.';
+import { GET_INFO } from '../../queries';
 
 export default function Test() {
 	const { loading, error, data } = useQuery(GET_INFO);
@@ -8,7 +9,7 @@ export default function Test() {
 	return (
 		<div>
 			<h2>TEST</h2>
-			{loading && <p>Loading...</p>}
+			{loading && <Loading />}
 			{error && <p>Error! {error}</p>}
 			{data && <p>{data.info}</p>}
 		</div>

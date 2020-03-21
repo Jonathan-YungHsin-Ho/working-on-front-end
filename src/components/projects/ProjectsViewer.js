@@ -3,6 +3,7 @@ import { useQuery } from '@apollo/react-hooks';
 import styled from 'styled-components';
 import { AddProject, EditProject, DeleteProject } from '.';
 import { ProjectRow } from '../card';
+import { Loading } from '../misc';
 import { StyledButton } from '../../styled-components';
 import { GET_USER } from '../../queries';
 
@@ -30,7 +31,7 @@ export default function ProjectsViewer() {
 					)}
 				</div>
 				<div className='projects-left-bottom'>
-					{loading && <p>Loading...</p>}
+					{loading && <Loading />}
 					{error && <p>Error!</p>}
 					{data?.me.projects.map(project => (
 						<div key={project.id} className='project-row'>

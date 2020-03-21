@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { Avatar } from '../home';
 import { ProjectRow } from '../card';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Loading } from '../misc';
 import { GET_USER_BY_ID } from '../../queries';
 
 export default function ProfileContent() {
@@ -18,7 +19,7 @@ export default function ProfileContent() {
 		<ProfilerWrapper>
 			<div className='content'>
 				<div className='content-left'>
-					{loading && <p>Loading...</p>}
+					{loading && <Loading />}
 					{error && <p>Error!</p>}
 					{data && (
 						<>

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import styled from 'styled-components';
 import { UpdateAvatar } from '.';
+import { Loading } from '../misc';
 import { StyledInput, StyledButton } from '../../styled-components';
 import { GET_USER } from '../../queries';
 import { UPDATE_USER } from '../../mutations';
@@ -53,7 +54,7 @@ export default function EditProfile() {
 		<EditWrapper>
 			<div className='form'>
 				<h2>Edit Profile</h2>
-				{loading && <p>Loading...</p>}
+				{loading && <Loading />}
 				{!loading && (
 					<form onSubmit={handleSubmit}>
 						<UpdateAvatar />
