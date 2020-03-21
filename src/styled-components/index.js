@@ -1,4 +1,9 @@
 import GlobalStyle from './GlobalStyle';
-import { StyledForm, StyledInput, StyledButton } from './StyledComponents';
+import {
+	PageWrapper,
+	StyledForm,
+	StyledInput,
+	StyledButton,
+} from './StyledComponents';
 
-export { GlobalStyle, StyledForm, StyledInput, StyledButton };
+export { GlobalStyle, PageWrapper, StyledForm, StyledInput, StyledButton };

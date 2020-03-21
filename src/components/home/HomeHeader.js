@@ -3,6 +3,7 @@ import { useQuery } from '@apollo/react-hooks';
 import { useHistory, Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { Avatar } from '.';
+import { Loading } from '../misc';
 import { StyledButton } from '../../styled-components';
 import { GET_USER } from '../../queries';
 
@@ -15,7 +16,7 @@ export default function HomeHeader() {
 
 	return (
 		<StyledUserWrapper>
-			{loading && <p>Loading...</p>}
+			{loading && <Loading />}
 			{error && <p>Error!</p>}
 			{data && (
 				<>

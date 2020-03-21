@@ -3,6 +3,7 @@ import { useQuery } from '@apollo/react-hooks';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { ScreenOverlay } from '.';
+import { Loading } from '../misc';
 import { GET_PROJ_BY_ID } from '../../queries';
 
 export default function ModalProject({ handleCloseModal, id }) {
@@ -13,7 +14,7 @@ export default function ModalProject({ handleCloseModal, id }) {
 	return (
 		<div>
 			<StyledProject>
-				{loading && <p>Loading...</p>}
+				{loading && <Loading />}
 				{error && <p>Error!</p>}
 				{data && (
 					<>

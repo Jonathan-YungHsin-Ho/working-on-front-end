@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 
+export const PageWrapper = styled.div`
+	padding: 0 2rem;
+`;
+
 export const StyledForm = styled.div`
 	width: 30rem;
 	height: 40rem;

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useMutation } from '@apollo/react-hooks';
 import styled from 'styled-components';
 import { StyledInput, StyledButton } from '../../styled-components';
+import { Loading } from '../misc';
 import { CREATE_PROJECT } from '../../mutations';
 import { GET_USER, GET_ALL_USERS } from '../../queries';
 
@@ -43,7 +44,7 @@ export default function AddProject() {
 		<StyledAddProjectWrapper>
 			<div className='form'>
 				<h2>Add New Project</h2>
-				{loading && <p>Loading...</p>}
+				{loading && <Loading />}
 				{!loading && (
 					<form onSubmit={handleSubmit}>
 						<StyledInput

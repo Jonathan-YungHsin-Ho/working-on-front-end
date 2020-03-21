@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { Avatar } from '../home';
 import { ProjectRow } from '../card';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Loading } from '../misc';
 import { GET_USER_BY_ID } from '../../queries';
 
 export default function ProfileContent() {
@@ -18,7 +19,7 @@ export default function ProfileContent() {
 		<ProfilerWrapper>
 			<div className='content'>
 				<div className='content-left'>
-					{loading && <p>Loading...</p>}
+					{loading && <Loading />}
 					{error && <p>Error!</p>}
 					{data && (
 						<>
@@ -146,7 +147,7 @@ export default function ProfileContent() {
 const ProfilerWrapper = styled.div`
 	margin: 2rem auto;
 
-	width: 100%;
+	width: auto;
 	max-width: 98rem;
 
 	border-radius: 0.3rem;

@@ -3,6 +3,7 @@ import { useMutation } from '@apollo/react-hooks';
 import { Link, useHistory, Redirect } from 'react-router-dom';
 import { StyledForm, StyledInput, StyledButton } from '../styled-components';
 import { Logo } from '../components/navbar';
+import { Loading } from '../components/misc';
 import { LOGIN } from '../mutations';
 // import { useIsLoggedIn } from '../hooks';
 
@@ -50,7 +51,7 @@ export default function Login() {
 		<StyledForm>
 			<div>
 				<Logo className='logo' />
-				{loading && <p>Loading...</p>}
+				{loading && <Loading />}
 				{!loading && (
 					<form onSubmit={handleSubmit}>
 						<StyledInput
