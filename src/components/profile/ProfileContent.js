@@ -146,7 +146,7 @@ export default function ProfileContent() {
 const ProfilerWrapper = styled.div`
 	margin: 2rem auto;
 
-	width: 100%;
+	width: auto;
 	max-width: 98rem;
 
 	border-radius: 0.3rem;

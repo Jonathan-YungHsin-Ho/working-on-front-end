@@ -1,20 +1,23 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { EditProfile } from '../components/account';
+import { PageWrapper } from '../styled-components/';
 
 export default function Account() {
 	const [mode, setMode] = useState('editProfile');
 
 	return (
-		<StyledAccount>
-			<div className='account-left'>
-				<p onClick={() => setMode('editProfile')}>Edit Profile</p>
-				{/* <p>Change Password</p> */}
-			</div>
-			<div className='account-right'>
-				{mode === 'editProfile' && <EditProfile />}
-			</div>
-		</StyledAccount>
+		<PageWrapper>
+			<StyledAccount>
+				<div className='account-left'>
+					<p onClick={() => setMode('editProfile')}>Edit Profile</p>
+					{/* <p>Change Password</p> */}
+				</div>
+				<div className='account-right'>
+					{mode === 'editProfile' && <EditProfile />}
+				</div>
+			</StyledAccount>
+		</PageWrapper>
 	);
 }
 
