@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Route, useLocation } from 'react-router-dom';
 import './App.css';
 import { GlobalStyle } from './styled-components';
 import { NavBar } from './components/navbar';
@@ -12,11 +12,14 @@ import {
 	Profile,
 	Projects,
 	Account,
+	Feedback,
 } from './pages';
+import { FeedbackButton } from './components/feedback';
 import { useIsLoggedIn } from './hooks';
 
 function App() {
 	const { isLoggedIn } = useIsLoggedIn();
+	const { pathname } = useLocation();
 
 	return (
 		<div className='App'>
@@ -30,6 +33,8 @@ function App() {
 			<PrivateRoute path='/explore' component={Explore} />
 			<PrivateRoute path='/projects' component={Projects} />
 			<PrivateRoute path='/account' component={Account} />
+			<PrivateRoute path='/feedback' component={Feedback} />
+			{isLoggedIn && pathname !== '/feedback' && <FeedbackButton />}
 		</div>
 	);
 }
