@@ -30,6 +30,14 @@ export const StyledForm = styled.div`
 		flex-direction: column;
 	}
 
+	textarea {
+		width: 100%;
+		resize: none;
+		padding: 0.75rem;
+
+		font-family: inherit;
+	}
+
 	.error {
 		color: #cc0605;
 	}
