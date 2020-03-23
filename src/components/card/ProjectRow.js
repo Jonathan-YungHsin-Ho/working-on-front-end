@@ -44,6 +44,7 @@ export default function ProjectRow({ project }) {
 							size='lg'
 							color='#ed1b2e'
 							className='icon-help'
+							title='Help wanted!'
 						/>
 					)}
 					{project.wantFeedback && (
@@ -52,6 +53,7 @@ export default function ProjectRow({ project }) {
 							size='lg'
 							color='cornflowerblue'
 							className='icon-feedback'
+							title='Feedback wanted'
 						/>
 					)}
 					{project.completed && (
@@ -60,6 +62,7 @@ export default function ProjectRow({ project }) {
 							size='lg'
 							color='green'
 							className='icon-feedback'
+							title='Project completed!'
 						/>
 					)}
 				</div>

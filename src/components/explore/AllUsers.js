@@ -20,12 +20,17 @@ export default function AllUsers() {
 }
 
 const CardWrapper = styled.div`
+	/* width: 100%; */
 	max-width: 98rem;
 	margin: 0 auto;
 	display: flex;
 	flex-wrap: wrap;
-	justify-content: space-around;
+	justify-content: space-between;
 	align-items: flex-start;
+
+	/* flex-flow: column wrap;
+	justify-content: flex-start;
+	align-items: center; */
 
 	padding: 2rem;
 `;
