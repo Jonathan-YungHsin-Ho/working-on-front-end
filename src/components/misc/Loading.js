@@ -23,4 +23,8 @@ const StyledLoading = styled.div`
 	align-items: center;
 
 	padding-bottom: 2rem;
+
+	p {
+		color: silver;
+	}
 `;
