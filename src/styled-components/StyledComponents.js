@@ -62,7 +62,7 @@ export const StyledButton = styled.button`
 
 	font-family: inherit;
 	font-weight: bold;
-	cursor: pointer;
+	cursor: ${props => (props.disabled ? 'not-allowed' : 'pointer')};
 
 	/* background-color: #003366;
 			color: white;

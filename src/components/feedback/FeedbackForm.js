@@ -80,7 +80,13 @@ export default function FeedbackForm() {
 						placeholder='Feedback'
 						onChange={handleChange}
 					/>
-					<StyledButton>Share Feedback</StyledButton>
+					{feedback.name !== '' &&
+					feedback.email !== '' &&
+					feedback.message !== '' ? (
+						<StyledButton>Share Feedback</StyledButton>
+					) : (
+						<StyledButton disabled={true}>Share Feedback</StyledButton>
+					)}
 				</form>
 				<div className='message-response'>
 					<span style={{ color: 'green' }}>{response}</span>

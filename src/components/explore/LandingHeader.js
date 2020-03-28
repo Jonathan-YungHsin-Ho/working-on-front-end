@@ -34,13 +34,13 @@ export default function LandingHeader() {
 }
 
 const StyledHeader = styled.div`
-	padding: 2rem;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	border-bottom: 1px solid silver;
 
 	.header-wrapper {
+		padding: 2rem;
 		width: 100%;
 		max-width: 98rem;
 		margin: 0 auto;

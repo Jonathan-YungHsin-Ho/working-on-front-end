@@ -30,6 +30,7 @@ export default function Card({ user }) {
 const StyledCard = styled.div`
 	width: 28rem;
 	padding-bottom: 0.5rem;
+	margin: 0 2rem;
 	margin-bottom: 2rem;
 
 	display: flex;
