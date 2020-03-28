@@ -8,7 +8,7 @@ export default function Loading() {
 			<FontAwesomeIcon
 				icon={['fas', 'cog']}
 				color='silver'
-				class='fa-spin fa-2x fa-fw'
+				className='fa-spin fa-2x fa-fw'
 			/>
 			<p>Loading...</p>
 		</StyledLoading>

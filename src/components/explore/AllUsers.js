@@ -25,12 +25,11 @@ const CardWrapper = styled.div`
 	margin: 0 auto;
 	display: flex;
 	flex-wrap: wrap;
-	justify-content: space-between;
-	align-items: flex-start;
 
 	/* flex-flow: column wrap;
 	justify-content: flex-start;
 	align-items: center; */
 
-	padding: 2rem;
+	/* padding: 2rem; */
+	padding-top: 2rem;
 `;

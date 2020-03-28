@@ -29,12 +29,14 @@ function App() {
 			<Route path='/signup' component={Signup} />
 			<Route path='/login' component={Login} />
 			<Route path='/profile/:id' component={Profile} />
+			<Route path='/feedback' component={Feedback} />
 			<PrivateRoute path='/home' component={Home} />
 			<PrivateRoute path='/explore' component={Explore} />
 			<PrivateRoute path='/projects' component={Projects} />
 			<PrivateRoute path='/account' component={Account} />
-			<PrivateRoute path='/feedback' component={Feedback} />
-			{isLoggedIn && pathname !== '/feedback' && <FeedbackButton />}
+			{/* <PrivateRoute path='/feedback' component={Feedback} /> */}
+			{/* {isLoggedIn && pathname !== '/feedback' && <FeedbackButton />} */}
+			{pathname !== '/feedback' && <FeedbackButton />}
 		</div>
 	);
 }
