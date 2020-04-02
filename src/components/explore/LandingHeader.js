@@ -20,7 +20,7 @@ export default function LandingHeader() {
 					<span className='icon'>
 						<FontAwesomeIcon icon={['fas', 'search']} size='lg' color='black' />
 					</span>
-					See what other devs are building.
+					See what other devs, data scientists, and UX designers are building.
 				</p>
 				<p>
 					<span className='icon'>
