@@ -35,13 +35,13 @@ export default function NavRight() {
 					<NavLink to='/home' title='Home'>
 						<FontAwesomeIcon icon={['fas', 'home']} size='lg' color='black' />
 					</NavLink>
-					<NavLink to={`/profile/${data?.me.id}`} title='Profile'>
+					{/* <NavLink to={`/profile/${data?.me.id}`} title='Profile'>
 						<FontAwesomeIcon
 							icon={['far', 'address-card']}
 							size='lg'
 							color='black'
 						/>
-					</NavLink>
+					</NavLink> */}
 					<NavLink to='/projects' title='Projects'>
 						<FontAwesomeIcon
 							icon={['far', 'list-alt']}
@@ -66,7 +66,7 @@ export default function NavRight() {
 							color='black'
 						/>
 					</div>
-					<NavLink to='/home'>
+					<NavLink to={`/profile/${data?.me.id}`} title='Profile'>
 						<Avatar
 							className='avatar'
 							width='3'
