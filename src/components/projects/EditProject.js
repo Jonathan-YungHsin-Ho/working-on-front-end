@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { StyledInput, StyledButton } from '../../styled-components';
 import { Loading } from '../misc';
 import { UPDATE_PROJECT } from '../../mutations';
-import { GET_PROJ_BY_ID } from '../../queries';
+import { GET_PROJ_BY_ID, GET_ALL_USERS } from '../../queries';
 
 export default function EditProject({ id }) {
 	const { data } = useQuery(GET_PROJ_BY_ID, { variables: { id } });
@@ -49,15 +49,17 @@ export default function EditProject({ id }) {
 		}
 	}, [data]);
 
-	const [updateProject, { loading, error }] = useMutation(UPDATE_PROJECT);
+	const [updateProject, { loading, error }] = useMutation(UPDATE_PROJECT, {
+		refetchQueries: [{ query: GET_PROJ_BY_ID, variables: { id } }],
+	});
 
-	const handleChange = e => {
+	const handleChange = (e) => {
 		const value =
 			e.target.type === 'checkbox' ? e.target.checked : e.target.value;
 		setProject({ ...project, [e.target.name]: value });
 	};
 
-	const handleSubmit = e => {
+	const handleSubmit = (e) => {
 		e.preventDefault();
 		updateProject({ variables: { ...project, id } });
 	};
