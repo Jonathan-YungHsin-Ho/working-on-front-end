@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { StyledInput, StyledButton } from '../../styled-components';
 import { Loading } from '../misc';
 import { UPDATE_PROJECT } from '../../mutations';
-import { GET_PROJ_BY_ID, GET_ALL_USERS } from '../../queries';
+import { GET_PROJ_BY_ID } from '../../queries';
 
 export default function EditProject({ id }) {
 	const { data } = useQuery(GET_PROJ_BY_ID, { variables: { id } });
@@ -49,9 +49,7 @@ export default function EditProject({ id }) {
 		}
 	}, [data]);
 
-	const [updateProject, { loading, error }] = useMutation(UPDATE_PROJECT, {
-		refetchQueries: [{ query: GET_PROJ_BY_ID, variables: { id } }],
-	});
+	const [updateProject, { loading, error }] = useMutation(UPDATE_PROJECT);
 
 	const handleChange = (e) => {
 		const value =
