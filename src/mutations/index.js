@@ -114,8 +114,14 @@ const UPDATE_PROJECT = gql`
 			postedBy {
 				id
 			}
+			description
+			techStack
 			private
 			status
+			designURL
+			frontEndRepoURL
+			backEndRepoURL
+			deploymentURL
 			wantFeedback
 			wantAssistance
 			completed
