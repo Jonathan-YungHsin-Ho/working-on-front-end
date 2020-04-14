@@ -19,6 +19,7 @@ export default function HomeHeader() {
 		if (error?.graphQLErrors[0].message === 'jwt expired') {
 			logout();
 		}
+		// eslint-disable-next-line
 	}, [error]);
 
 	const handleViewProjects = () => history.push('/projects');
