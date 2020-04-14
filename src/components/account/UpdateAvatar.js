@@ -37,17 +37,18 @@ export default function UpdateAvatar() {
 					`https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUD_NAME}/image/upload`,
 					formData,
 				)
-				.then(res => {
+				.then((res) => {
 					console.log(res);
 					updateImage({ variables: { avatarURL: res.data.secure_url } });
 				})
-				.catch(err => {
+				.catch((err) => {
 					console.log(err);
 				});
 		}
+		// eslint-disable-next-line
 	}, [picture]);
 
-	const handleChange = e => setPicture(e.target.files[0]);
+	const handleChange = (e) => setPicture(e.target.files[0]);
 
 	return (
 		<StyledUpdate>
