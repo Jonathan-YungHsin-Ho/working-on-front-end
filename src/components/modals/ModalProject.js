@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { ScreenOverlay } from '.';
 import { Loading } from '../misc';
 import { GET_PROJ_BY_ID } from '../../queries';
+import { parseDate } from '../../utils/parseDate';
 
 export default function ModalProject({ handleCloseModal, id }) {
 	const { loading, error, data } = useQuery(GET_PROJ_BY_ID, {
@@ -25,6 +26,11 @@ export default function ModalProject({ handleCloseModal, id }) {
 									<div className='project-field'>
 										<h3>Status</h3>
 										<p>{data.projectByID.status}</p>
+										<p>
+											<i>
+												Last updated: {parseDate(data.projectByID.lastUpdated)}
+											</i>
+										</p>
 									</div>
 								)}
 								{data.projectByID?.description && (

@@ -1,4 +1,5 @@
 import { useIsLoggedIn } from './useIsLoggedIn';
 import { useModal } from './useModal';
+import { useLogout } from './useLogout';
 
-export { useIsLoggedIn, useModal };
+export { useIsLoggedIn, useModal, useLogout };
