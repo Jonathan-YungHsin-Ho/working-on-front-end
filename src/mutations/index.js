@@ -72,6 +72,7 @@ const CREATE_PROJECT = gql`
 			wantAssistance
 			completed
 			archived
+			lastUpdated
 		}
 	}
 `;
@@ -125,6 +126,7 @@ const UPDATE_PROJECT = gql`
 			wantFeedback
 			wantAssistance
 			completed
+			lastUpdated
 		}
 	}
 `;

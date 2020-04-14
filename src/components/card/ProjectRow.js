@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useIsLoggedIn } from '../../hooks';
 import { ModalProject } from '../modals';
 import { useModal } from '../../hooks';
+import { parseDate } from '../../utils/parseDate';
 
 export default function ProjectRow({ project }) {
 	const { isLoggedIn } = useIsLoggedIn();
@@ -68,6 +69,9 @@ export default function ProjectRow({ project }) {
 				</div>
 			</div>
 			<div className='project-status'>{project.status}</div>
+			<div className='project-updated'>
+				Last updated: {parseDate(project.lastUpdated)}
+			</div>
 			{showModal && (
 				<ModalProject
 					handleCloseModal={() => handleModal({ type: 'close' })}
@@ -106,5 +110,11 @@ const StyledProjectRow = styled.div`
 	.project-status {
 		margin-top: 0.5rem;
 		font-size: 1.1rem;
+	}
+
+	.project-updated {
+		text-align: right;
+		font-size: 1.1rem;
+		font-style: italic;
 	}
 `;

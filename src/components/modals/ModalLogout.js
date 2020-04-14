@@ -1,21 +1,15 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
-import { useApolloClient } from '@apollo/react-hooks';
 import styled from 'styled-components';
 import { ScreenOverlay } from '.';
 import { StyledButton } from '../../styled-components';
+import { useLogout } from '../../hooks';
 
 export default function ModalLogout({ handleCloseModal }) {
-	const history = useHistory();
-
-	const client = useApolloClient();
+	const logout = useLogout();
 
 	const handleLogout = () => {
 		handleCloseModal();
-		client.clearStore();
-		client.writeData({ data: { isLoggedIn: false } });
-		history.push('/');
-		localStorage.clear();
+		logout();
 	};
 
 	return (

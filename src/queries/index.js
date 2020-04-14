@@ -35,6 +35,7 @@ const GET_USER = gql`
 				wantAssistance
 				completed
 				archived
+				lastUpdated
 			}
 			followers {
 				id
@@ -60,6 +61,7 @@ const GET_ALL_USERS = gql`
 				wantFeedback
 				wantAssistance
 				completed
+				lastUpdated
 				# likes
 				# comments
 			}
@@ -89,6 +91,7 @@ const GET_PROJ_BY_ID = gql`
 			wantAssistance
 			completed
 			archived
+			lastUpdated
 		}
 	}
 `;
@@ -115,6 +118,7 @@ const GET_USER_BY_ID = gql`
 				wantFeedback
 				wantAssistance
 				completed
+				lastUpdated
 			}
 		}
 	}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import { useHistory, Link } from 'react-router-dom';
 import styled from 'styled-components';
@@ -6,11 +6,20 @@ import { Avatar } from '.';
 import { Loading } from '../misc';
 import { StyledButton } from '../../styled-components';
 import { GET_USER } from '../../queries';
+import { useLogout } from '../../hooks';
 
 export default function HomeHeader() {
 	const history = useHistory();
 
+	const logout = useLogout();
+
 	const { loading, error, data } = useQuery(GET_USER);
+
+	useEffect(() => {
+		if (error?.graphQLErrors[0].message === 'jwt expired') {
+			logout();
+		}
+	}, [error]);
 
 	const handleViewProjects = () => history.push('/projects');
 
