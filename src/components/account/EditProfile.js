@@ -15,6 +15,7 @@ export default function EditProfile() {
 		email: '',
 		bio: '',
 		techStack: '',
+		currentlyStudying: '',
 		githubURL: '',
 		linkedinURL: '',
 		portfolioURL: '',
@@ -32,6 +33,7 @@ export default function EditProfile() {
 				email: me.email || '',
 				bio: me.bio || '',
 				techStack: me.techStack || '',
+				currentlyStudying: me.currentlyStudying || '',
 				githubURL: me.githubURL || '',
 				linkedinURL: me.linkedinURL || '',
 				portfolioURL: me.portfolioURL || '',
@@ -42,10 +44,10 @@ export default function EditProfile() {
 
 	const [updateUser, { loading, error }] = useMutation(UPDATE_USER);
 
-	const handleChange = e =>
+	const handleChange = (e) =>
 		setUser({ ...user, [e.target.name]: e.target.value });
 
-	const handleSubmit = e => {
+	const handleSubmit = (e) => {
 		e.preventDefault();
 		updateUser({ variables: { ...user } });
 	};
@@ -84,6 +86,13 @@ export default function EditProfile() {
 							type='text'
 							value={user.techStack}
 							placeholder='Favorite Tech Stack'
+							onChange={handleChange}
+						/>
+						<StyledInput
+							name='currentlyStudying'
+							type='text'
+							value={user.currentlyStudying}
+							placeholder='Currently Studying...'
 							onChange={handleChange}
 						/>
 						<StyledInput

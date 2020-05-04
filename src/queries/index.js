@@ -16,6 +16,7 @@ const GET_USER = gql`
 			name
 			email
 			techStack
+			currentlyStudying
 			githubURL
 			linkedinURL
 			portfolioURL
@@ -110,6 +111,7 @@ const GET_USER_BY_ID = gql`
 			linkedinURL
 			portfolioURL
 			twitterURL
+			currentlyStudying
 			projects {
 				name
 				id
