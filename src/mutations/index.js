@@ -147,6 +147,7 @@ const UPDATE_USER = gql`
 		$email: String
 		$bio: String
 		$techStack: String
+		$currentlyStudying: String
 		$avatarURL: String
 		$githubURL: String
 		$linkedinURL: String
@@ -160,6 +161,7 @@ const UPDATE_USER = gql`
 			email: $email
 			bio: $bio
 			techStack: $techStack
+			currentlyStudying: $currentlyStudying
 			avatarURL: $avatarURL
 			githubURL: $githubURL
 			linkedinURL: $linkedinURL
@@ -172,6 +174,7 @@ const UPDATE_USER = gql`
 			email
 			bio
 			techStack
+			currentlyStudying
 			avatarURL
 			githubURL
 			linkedinURL

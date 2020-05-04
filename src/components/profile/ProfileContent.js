@@ -57,6 +57,12 @@ export default function ProfileContent() {
 										<p>{data.userByID.techStack}</p>
 									</div>
 								)}
+								{data.userByID.currentlyStudying && (
+									<div className='profile-field'>
+										<h3>Currently Studying</h3>
+										<p>{data.userByID.currentlyStudying}</p>
+									</div>
+								)}
 								<div className='profile-field links'>
 									{(data.userByID.githubURL ||
 										data.userByID.linkedinURL ||
@@ -132,7 +138,7 @@ export default function ProfileContent() {
 						<div>
 							<h3 className='profile-projects-header'>Current Projects</h3>
 							<div className='profile-projects'>
-								{data.userByID.projects.map(project => (
+								{data.userByID.projects.map((project) => (
 									<ProjectRow key={project.id} project={project} />
 								))}
 							</div>
